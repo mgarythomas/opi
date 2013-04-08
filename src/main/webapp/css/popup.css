@@ -1,0 +1,30 @@
+A:link {
+	COLOR: #2b7493; TEXT-DECORATION: underline
+}
+A:visited {
+	COLOR: #000000; TEXT-DECORATION: underline
+}
+A:hover {
+	COLOR: #000000; TEXT-DECORATION: underline
+}
+A:active {
+	COLOR: #000000; TEXT-DECORATION: underline
+}
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 0.72em; PADDING-BOTTOM: 0px; MARGIN: 0px; COLOR: #000000; PADDING-TOP: 0px; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #ffffff
+}
+#popupContent {
+	MARGIN-TOP: 25px; FONT-SIZE: 90%
+}
+.spacer {
+	CLEAR: both
+}
+.button {
+	BORDER-RIGHT: #999 1px outset; PADDING-RIGHT: 0px; BORDER-TOP: #999 1px outset; PADDING-LEFT: 0px; FONT-SIZE: 100%; PADDING-BOTTOM: 0px; MARGIN: 2px; BORDER-LEFT: #999 1px outset; CURSOR: pointer; PADDING-TOP: 0px; BORDER-BOTTOM: #999 1px outset; BACKGROUND-COLOR: #efefef
+}
+.clientInformationTable TD {
+	FONT-SIZE: 98%
+}
+ HTML BODY .headerIeFix {
+	MARGIN-BOTTOM: 50px
+}

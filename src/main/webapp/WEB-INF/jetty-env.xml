@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configure id='wac' class="org.eclipse.jetty.webapp.WebAppContext">
+	<New id="DSspo" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg><Ref id="wac"/></Arg>
+		<Arg>jdbc/spo</Arg>
+		<Arg>
+			<New class="org.postgresql.ds.PGSimpleDataSource">
+				<Set name="User">mgarythomas</Set>
+				<Set name="Password"></Set>
+				<Set name="DatabaseName">mgarythomas</Set>
+				<Set name="ServerName">localhost</Set>
+				<Set name="PortNumber">5432</Set>
+			</New>
+		</Arg>
+	</New>
+</Configure>

@@ -1,0 +1,16 @@
+<Context path="/opi" debug="1" reloadable="false">
+  <Loader loaderClass="org.springframework.instrument.classloading.tomcat.TomcatInstrumentableClassLoader" useSystemClassLoaderAsParent="false"/>
+  <!-- Define a database connection pool for Oracle -->
+  <Resource name="jdbc/opiPostgres" auth="Container"
+          type="javax.sql.DataSource"
+          driverClassName="org.postgresql.Driver"
+          url="jdbc:postgresql://localhost:5432/opi"
+          username="paulmclachlan" password="" maxActive="20"
+          maxIdle="10"
+          maxWait="-1"/>
+<!-- was
+org.apache.commons.dbcp.BasicDataSourceFactory
+-->
+   <ResourceLink global='jdbc/opiPostgres' name='jdbc/opiPostgres' type="javax.sql.Datasource"/>
+ 
+ </Context>

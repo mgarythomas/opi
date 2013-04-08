@@ -1,0 +1,18 @@
+.header {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px; HEIGHT: 8.5em; BACKGROUND-COLOR: #ffffff
+}
+.tpByline {
+	FONT-WEIGHT: bold; FONT-SIZE: 12pt; VERTICAL-ALIGN: bottom; COLOR: black; FONT-FAMILY: arial; TEXT-ALIGN: left
+}
+.tpName {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: black; FONT-FAMILY: arial; TEXT-ALIGN: right
+}
+.tpAddress {
+	FONT-SIZE: 7pt; COLOR: black; FONT-FAMILY: arial; TEXT-ALIGN: right
+}
+.tpMisc {
+	FONT-SIZE: 7pt; COLOR: black; FONT-FAMILY: arial; TEXT-ALIGN: right
+}
+.headerLine {
+	BACKGROUND-COLOR: #b0c4de
+}

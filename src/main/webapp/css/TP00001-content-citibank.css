@@ -1,0 +1,303 @@
+* {
+  font-size: 11px;
+  font-family: Tahoma, Verdana, Arial;
+}
+
+img {
+	border: none;
+}
+
+span#remove2 a,
+span#creditCalc a,
+span#cashflowCalc a {
+  text-decoration: none;
+
+  font-family: "trebuchet ms", verdana, arial;
+  font-weight: bold;
+  font-size: 11px;
+
+  color: #0770B1;
+}
+
+div.groupHeader {
+	display: block;
+	padding-left: 5px;
+	
+  font-family: "trebuchet ms", verdana, arial;
+  font-weight: bold;
+  font-size: 20px;
+
+  color: #003399;
+
+  line-height: normal;
+  
+  border-bottom: 1px dotted #3F799F;
+}
+
+fieldset {
+  border: 1px solid #0770B1;
+  margin-bottom: 20px;
+  padding: 15px 10px;
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+legend {
+  color: #003399;
+  
+  line-height: 2.5em;
+  
+  font-weight: bold;
+}
+
+table.dataTableCustom {
+  border-top: 1px solid #0770B1;
+  border-left: 1px solid #0770B1;
+}
+
+table.dataTableCustom th {
+  padding: 5px 2px;
+  margin: 0px;
+
+  font-weight: bold; 
+  line-height: 1.2em;
+
+  border-right: 1px solid #0770B1;
+  border-bottom: 1px solid #0770B1;
+  color: #333333;
+  
+  background: #e0e0e0;
+}
+
+table.dataTableCustom td {
+  padding: 5px 5px;
+
+  vertical-align: baseline;
+  line-height: 1.2em;
+
+  border-right: 1px solid #0770B1;
+  border-bottom: 1px solid #0770B1;
+
+  color: #444444;
+}
+
+table.dataTableCustom td a
+table.dataTableCustom td a:link,
+table.dataTableCustom td a:visited,
+table.dataTableCustom td a:hover,
+table.dataTableCustom td a:active {
+	color: #444444;
+  font-weight: bold;
+}
+
+h1 {
+	color: white; 
+	background: #343A7C; 
+	font-size: 28px; 
+	font-weight: bold; 
+	padding: 2px 5px; 
+	margin: 5px 0px;
+}
+
+p {
+	line-height: normal;
+}
+
+p.blue-blurb {
+	margin: 15px 0px; 
+	border: 2px solid #8181DF; 
+	background: #C2C2F0; 
+	color: black; 
+	padding: 20px 5px; 
+	font-weight: bold; 
+	font-size: 13px;
+}
+
+p.error {
+	color: red; 
+	font-weight: bold;
+}
+
+h3 {
+  font-size: 13px;
+  font-weight: normal;
+  font-weight: bold;
+}
+
+table.normal {
+ border: none; 
+ padding: 0px;
+}
+
+.groupLabel {
+	font-weight: bold;
+}
+
+.address LABEL {
+	FLOAT: left; 
+	
+	WIDTH: 100px;
+	margin: 0px 5px 0px 0px;
+	padding: 0px;
+}
+
+.tableIn LABEL {
+	PADDING-BOTTOM: 2px; 
+	PADDING-LEFT: 5px; 
+	WIDTH: 80px;
+	
+}
+
+.address INPUT {
+	WIDTH: 215px;
+}
+
+/* -------------------------------------------------------------- Info boxes. */
+
+.infoBox {
+	border: 3px solid #FFD700;
+	background: #FFFFE0;
+	padding: 10px;
+}
+
+.infoBox p {
+	padding: 0px;
+	margin: 10px 0px;
+}
+
+/* --------------------------------------------------------- Application Form */
+
+tr.address td label {
+  margin: 0px; 
+  padding: 0px; 
+  
+  line-height: normal;
+}
+
+tr.address td input,
+tr.address td select {
+	float: left;
+}
+
+tr.address td hr.form-section-clear {
+	clear: both; 
+	
+	visibility: hidden; 
+	
+	margin: 0px; 
+	padding: 7px 0px; 
+	
+	line-height: normal;
+}
+
+tr.address div.checkboxfield {
+  float: left;
+}
+
+tr.address div.checkboxfield label {
+	float: left;
+	width: auto; 
+	
+	margin: 0px 5px; 
+	padding: 2px 0px 0px 0px;
+}
+
+tr.address div.checkboxfield input {
+	width: auto;
+	margin-right: 20px;
+}
+
+div.blue-box {
+	padding: 10px; 
+	
+  border: 1px solid #343A7C; 
+  background: #D6E0FE;
+  
+  margin-bottom: 10px;
+}
+
+div.blue-box p {
+	padding: 0px;
+	margin: 0px;
+	
+	line-height: 1.7em;
+  color: black;
+}
+
+.infoBox2 {
+	font-weight: bold;
+	padding: 0px 5px; 
+	border: 2px solid #8181DF; 
+	background-color: #C2C2F0;
+	color: black; 
+}
+
+/* --------------------------------------------------------------- BDM Table. */
+
+table.bdm {
+	padding: 0px;
+	
+	border: 1px solid #000088;
+	border-right: none;
+	border-bottom: none;
+}
+	
+table.bdm th {
+	padding: 5px 5px;
+	margin: 0px;
+
+	border: none;
+	border-right: 1px solid #000088;
+	border-bottom: 1px solid #000088;
+	
+	line-height: normal;
+}
+
+table.bdm tr td {
+	line-height: normal;
+	margin: 0px;
+	padding: 5px 5px;
+	
+	border-right: 1px solid #000088;
+	border-bottom: 1px solid #000088;
+}
+
+/* ------------------------------------ Customisation for financials section. */
+
+table.financials {
+  width: 100%;
+  padding: 0px;
+}
+
+table.financials tr td label {
+  line-height: normal;
+  width: 200px;
+  margin: 0px;
+  padding: 0px;
+  float: left;
+}
+
+table.financials tr td p {
+	float: left;
+	line-height: normal;
+	padding: 0px 0px;
+	margin: 0px;
+}
+
+table.financials tr td input {
+	float: left;
+	width: 150px;
+	margin: 0px 10px;
+}
+
+table.financials tr td hr.form-section-clear {
+  visibility: hidden;
+  margin: 0px;
+  padding: 0px;
+  clear: both;
+  padding-bottom: 10px;
+}
+
+table.financials tr.address td input.has-date {
+	width: 75px !important;
+}

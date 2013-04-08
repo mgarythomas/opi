@@ -1,0 +1,24 @@
+<Context path="/opi" debug="1" reloadable="false">
+   <Loader loaderClass="org.springframework.instrument.classloading.tomcat.TomcatInstrumentableClassLoader" useSystemClassLoaderAsParent="false"/>
+  <!-- Define a database connection pool for Oracle -->
+    <Resource
+      auth="Container"
+      name="jdbc/opiOracle"
+      type="javax.sql.DataSource"
+      password="opidev1"
+      driverClassName="oracle.jdbc.driver.OracleDriver"
+      maxIdle="2"
+      maxWait="5000"
+      username="opidev1"
+      url="jdbc:oracle:thin:@wsyd0076408.ubsw.net:1521:OPI"
+      maxActive="200"
+      factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory" 
+      removeAbandoned="true"
+      removeAbandonedTimeout="60"
+      logAbandoned="true"/>
+<!-- was
+org.apache.commons.dbcp.BasicDataSourceFactory
+-->
+   <ResourceLink global="jdbc/opiOracle" name="jdbc/opiOracle" type="javax.sql.Datasource"/>
+ 
+ </Context>

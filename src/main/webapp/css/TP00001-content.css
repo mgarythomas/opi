@@ -1,0 +1,422 @@
+table.dataTableCustom {
+  border-top: 1px solid darkblue;
+  border-left: 1px solid darkblue;
+}
+table.dataTableCustom th {
+  padding: 3px 2px;
+  margin: 0px;
+  font-weight: bold; 
+  border-right: 1px solid darkblue;
+  border-bottom: 1px solid darkblue;
+  line-height: 1.2em;
+  
+  background: #e0e0e0;
+}
+
+table.dataTableCustom td {
+  vertical-align: baseline;
+  line-height: 1.2em;
+  border-right: 1px solid darkblue;
+  border-bottom: 1px solid darkblue;
+
+  padding: 2px 2px;
+}
+
+table.dataTableCustom td a
+table.dataTableCustom td a:link,
+table.dataTableCustom td a:visited,
+table.dataTableCustom td a:hover,
+table.dataTableCustom td a:active {
+	color: navy;
+	
+  font-size: 11.5px;
+  font-weight: bold;
+}
+
+#content {
+	COLOR: navy; 
+	BACKGROUND-COLOR: #ffffff;
+	margin: 0px 5px; 
+	padding: 0px; 
+	width: 100%;
+}
+
+h1 {
+	color: white; 
+	background: #343A7C; 
+	font-size: 28px; 
+	font-weight: bold; 
+	padding: 2px 5px; 
+	margin: 5px 0px;
+}
+
+p.blue-blurb {
+	margin: 15px 0px; 
+	border: 2px solid #8181DF; 
+	background: #C2C2F0; 
+	color: black; 
+	padding: 20px 5px; 
+	font-weight: bold; 
+	font-size: 13px;
+}
+
+p.error {
+	color: red; 
+	font-weight: bold;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: normal;
+  font-weight: bold;
+}
+
+table.normal {
+ border: none; 
+ padding: 0px;
+}
+
+/* --------------------------------------------------------------- BDM Table. */
+
+table.bdm {
+	padding: 0px;
+	
+	border: 1px solid #000088;
+	border-right: none;
+	border-bottom: none;
+}
+	
+table.bdm th {
+	padding: 5px 5px;
+	margin: 0px;
+
+	border: none;
+	border-right: 1px solid #000088;
+	border-bottom: 1px solid #000088;
+	
+	line-height: normal;
+}
+
+table.bdm tr td {
+	line-height: normal;
+	margin: 0px;
+	padding: 5px 5px;
+	
+	border-right: 1px solid #000088;
+	border-bottom: 1px solid #000088;
+}
+
+/************************************************************* Old CSS Below. */
+
+.pageTitle {
+	FONT-WEIGHT: bold; FONT-SIZE: 15pt; COLOR: darkblue; FONT-FAMILY: times
+}
+.subTitle {
+	FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: darkblue; FONT-FAMILY: arial
+}
+.descriptiveText {
+	FONT-SIZE: 13pt; COLOR: darkblue; FONT-FAMILY: times
+}
+.groupHeader {
+	PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 20pt; WIDTH: 100%; COLOR: white; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 24pt; BACKGROUND-COLOR: #343A7C; BORDER-BOTTOM-STYLE: none
+}
+.groupLabel {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: darkblue
+}
+.groupBox {
+	FONT-FAMILY: arial; WIDTH: 100%; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BACKGROUND-COLOR: #ffffff; BORDER-BOTTOM-STYLE: none
+}
+.mandatoryField {
+	FONT-WEIGHT: bold; FONT-SIZE: 0.9em; COLOR: red
+}
+.tableHeader {
+	FONT-WEIGHT: bold; COLOR: white; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 20px; BACKGROUND-COLOR: #b0c4de; BORDER-BOTTOM-STYLE: none
+}
+.infoBox {
+	FONT-FAMILY: arial; PADDING-RIGHT: 5px; PADDING-LEFT: 5px; BORDER-RIGHT: #ffd700 1px solid; BORDER-TOP: #ffd700 1px solid; BORDER-LEFT: #ffd700 1px solid; COLOR: black; BORDER-BOTTOM: #ffd700 1px solid; BACKGROUND-COLOR: #ffffe0
+}
+.infoBox2 {
+	FONT-FAMILY: arial; FONT-SIZE: 10pt; PADDING-RIGHT: 5px; PADDING-LEFT: 5px; BORDER-RIGHT: #8181DF 2px solid; BORDER-TOP: #8181DF 2px solid; BORDER-LEFT: #8181DF 2px solid; COLOR: black; BORDER-BOTTOM: #8181DF 2px solid; BACKGROUND-COLOR: #C2C2F0
+}
+ HTML BODY #content {
+	PADDING-TOP: 10px
+}
+.footerLogoText {
+	FONT-WEIGHT: normal; FONT-SIZE: 10px; MARGIN-LEFT: 38px; COLOR: black; LINE-HEIGHT: 11px; FONT-FAMILY: arial; TEXT-ALIGN: left
+}
+
+H2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 100%
+}
+ HTML BODY H2 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+P {
+	LINE-HEIGHT: 1.6em
+}
+HR {
+	BORDER-TOP: #8fa2b5 1px solid; MARGIN-TOP: -10px; HEIGHT: 1px
+}
+UNKNOWN {
+	MARGIN-TOP: 20px
+}
+ HTML BODY .hrIefix {
+	MARGIN-TOP: 0px
+}
+.bold {
+	FONT-WEIGHT: bold
+}
+.left {
+	FLOAT: left
+}
+.right {
+	FLOAT: right
+}
+.textLeft {
+	TEXT-ALIGN: left
+}
+.textCenter {
+	TEXT-ALIGN: center
+}
+.textRight {
+	TEXT-ALIGN: right
+}
+IMG {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+.addApplicant {
+	MARGIN-BOTTOM: -5px; MARGIN-RIGHT: 2px
+}
+.noBorder {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+.updateLink {
+	FONT-WEIGHT: bold; COLOR: #2b7493; TEXT-ALIGN: center
+}
+.printOnly {
+	DISPLAY: none
+}
+.documentTable {
+	MARGIN-LEFT: -4px
+}
+.documentTable TD {
+	VERTICAL-ALIGN: top
+}
+.dataTable {
+	BORDER-RIGHT: #dfe6ec 1px solid; BORDER-BOTTOM: #dfe6ec 1px solid; BACKGROUND-COLOR: #ffffff
+}
+.dataTable TD {
+	PADDING-RIGHT: 4px; BORDER-TOP: #dfe6ec 1px solid; PADDING-LEFT: 4px; PADDING-BOTTOM: 3px; BORDER-LEFT: #dfe6ec 1px solid; PADDING-TOP: 3px
+}
+.dataTableNoBorder {
+	BORDER-RIGHT: #dfe6ec 1px none; BORDER-BOTTOM: #dfe6ec 1px none; BACKGROUND-COLOR: #ffffff
+}
+.dataTableNoBorder TD {
+	PADDING-RIGHT: 4px; BORDER-TOP: #dfe6ec 1px none; PADDING-LEFT: 4px; PADDING-BOTTOM: 3px; BORDER-LEFT: #dfe6ec 1px none; PADDING-TOP: 3px
+}
+.dataHeader {
+	FONT-WEIGHT: bold; BACKGROUND-COLOR: #ecf0f4
+}
+.acknowledgements LABEL {
+	LINE-HEIGHT: 25px
+}
+.acknowledgements TD {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; VERTICAL-ALIGN: top; PADDING-TOP: 5px
+}
+.repeat {
+	CLEAR: both
+}
+.duplicateLink {
+	FONT-WEIGHT: bold; FLOAT: left; PADDING-TOP: 20px
+}
+ HTML BODY .duplicateLink {
+	FLOAT: right; PADDING-TOP: 0px
+}
+.removeLink {
+	FLOAT: left; PADDING-TOP: 20px
+}
+ HTML BODY .removeLink {
+	FLOAT: right; PADDING-TOP: 0px
+}
+#clientInformation {
+	BORDER-RIGHT: #dfe6ec 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #dfe6ec 1px solid; OVERFLOW-Y: scroll; PADDING-LEFT: 10px; MARGIN-BOTTOM: 20px; PADDING-BOTTOM: 10px; BORDER-LEFT: #dfe6ec 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: #dfe6ec 1px solid; HEIGHT: 300px; BACKGROUND-COLOR: #fdfcfd
+}
+.clientInformationTable TD {
+	PADDING-RIGHT: 20px; VERTICAL-ALIGN: top
+}
+.clientInformationTable {
+	FONT-WEIGHT: normal; FONT-SIZE: 100%; BORDER-BOTTOM-COLOR: white; WIDTH: 100%; COLOR: #000000; BORDER-TOP-STYLE: none; LINE-HEIGHT: 20px; BORDER-RIGHT-STYLE: groove; BORDER-LEFT-STYLE: none; BACKGROUND-COLOR: #fdfcfd; BORDER-RIGHT-COLOR: white; BORDER-BOTTOM-STYLE: groove
+}
+.clientInformationTable .pointButton {
+	BORDER-RIGHT: #999 1px outset; PADDING-RIGHT: 0px; BORDER-TOP: #999 1px outset; PADDING-LEFT: 0px; FONT-WEIGHT: normal; FLOAT: right; PADDING-BOTTOM: 0px; BORDER-LEFT: #999 1px outset; WIDTH: 6em; CURSOR: pointer; MARGIN-RIGHT: -18px; PADDING-TOP: 0px; BORDER-BOTTOM: #999 1px outset; BACKGROUND-COLOR: #efefef
+}
+.intermediaryPages FIELDSET {
+	MARGIN-TOP: 0px; FONT-SIZE: 1em; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+.intermediaryPages LABEL {
+	MARGIN-LEFT: 10px
+}
+.intermediaryPages INPUT {
+	MARGIN-LEFT: 10px; MARGIN-RIGHT: 10px
+}
+.intermediaryPages right {
+	FLOAT: right
+}
+#login {
+	BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; MARGIN: 20px auto; BORDER-LEFT: #cccccc 1px solid; WIDTH: 235px; PADDING-TOP: 10px; BORDER-BOTTOM: #cccccc 1px solid; BACKGROUND-COLOR: #fdfcfd
+}
+.loginFieldset {
+	MARGIN-TOP: 20px; BORDER-TOP-STYLE: none; LINE-HEIGHT: 30px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+#login LABEL {
+	FLOAT: left; WIDTH: 60px; MARGIN-RIGHT: 10px
+}
+#login INPUT {
+	WIDTH: 150px
+}
+#login BR {
+	CLEAR: left
+}
+.loginButton {
+	BORDER-RIGHT: #999 1px outset; BORDER-TOP: #999 1px outset; FLOAT: right; BORDER-LEFT: #999 1px outset; CURSOR: pointer; MARGIN-RIGHT: 6px; BORDER-BOTTOM: #999 1px outset; HEIGHT: 20px; BACKGROUND-COLOR: #efefef
+}
+#password {
+	BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; MARGIN: 20px auto; BORDER-LEFT: #cccccc 1px solid; WIDTH: 440px; PADDING-TOP: 10px; BORDER-BOTTOM: #cccccc 1px solid; BACKGROUND-COLOR: #fdfcfd
+}
+#password LABEL {
+	CLEAR: left; FLOAT: left; WIDTH: 260px; MARGIN-RIGHT: 10px
+}
+
+.address LABEL {
+	FLOAT: left; 
+	
+	WIDTH: 100px;
+	margin: 0px 5px 0px 0px;
+	padding: 0px;
+}
+
+.tableIn LABEL {
+	PADDING-BOTTOM: 2px; 
+	PADDING-LEFT: 5px; 
+	WIDTH: 80px;
+	
+}
+
+.address INPUT {
+	WIDTH: 215px;
+}
+#registrationMonitor {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; OVERFLOW-Y: scroll; BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid; HEIGHT: 280px; BACKGROUND-COLOR: #f4f4f4;
+}
+.monitorFix {
+	PADDING-LEFT: 6px; PADDING-TOP: 0px;
+}
+HTML BODY .monitorFix {
+	LINE-HEIGHT: 2px; PADDING-TOP: 4px;
+}
+.changeButton {
+	BORDER-RIGHT: #999 1px outset; BORDER-TOP: #999 1px outset; MARGIN-TOP: 1px; FLOAT: right; BORDER-LEFT: #999 1px outset; CURSOR: pointer; MARGIN-RIGHT: -17px; BORDER-BOTTOM: #999 1px outset; BACKGROUND-COLOR: #efefef;
+}
+.pointer {
+	CURSOR: pointer;
+}
+.date {
+	WIDTH: 128px;
+}
+.calendar {
+	MARGIN-BOTTOM: -2px; MARGIN-LEFT: -8px;
+}
+.pageError {
+	CURSOR: help; BACKGROUND-COLOR: #f9dfdf;
+}
+
+/* --------------------------------------------------------- Application Form */
+
+tr.address td label {
+  margin: 0px; 
+  padding: 0px; 
+  
+  line-height: normal;
+}
+
+tr.address td input,
+tr.address td select {
+	float: left;
+}
+
+tr.address td input.has-date {
+	width: 100px !important;
+}
+
+tr.address td hr.form-section-clear {
+	clear: both; 
+	
+	visibility: hidden; 
+	
+	margin: 0px; 
+	padding: 7px 0px; 
+	
+	line-height: normal;
+}
+
+tr.address div.checkboxfield {
+  float: left;
+}
+
+tr.address div.checkboxfield label {
+	float: left;
+	width: auto; 
+	
+	margin: 0px 5px; 
+	padding: 2px 0px 0px 0px;
+}
+
+tr.address div.checkboxfield input {
+	width: auto;
+	margin-right: 20px;
+}
+
+/* ----------------------------------------------------------- Coloured Boxes */
+
+div.blue-box {
+	padding: 10px; 
+	
+  border: 1px solid #343A7C; 
+  background: #D6E0FE;
+  
+  margin-bottom: 10px;
+}
+
+div.blue-box p {
+	padding: 0px;
+	margin: 0px;
+	
+	line-height: 1.7em;
+  color: black;
+}
+
+/* ------------------------------------ Customisation for financials section. */
+
+table.financials tr.address td {
+	padding-right: 20px;
+}
+	
+table.financials tr.address td label {
+	float: left;
+  width: 290px;
+}
+
+table.financials tr.address td p {
+	float: left;
+  line-height: normal;
+  padding: 0px; margin: 0px;
+}
+
+table.financials tr.address td input {
+	float: left;
+  width: 100px;
+}
+
+table.financials tr.address td input.has-date {
+	width: 75px !important;
+}

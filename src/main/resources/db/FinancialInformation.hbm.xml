@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.ubs.opi.domain.FinancialInformation" table="FINANCIALINFORMATION">
+    <id name="id" column="investorindividualid">
+      <generator class="foreign">
+        <param name="property">investorindividual</param>
+      </generator>
+    </id>
+    
+    <one-to-one name="investorindividual" constrained="true"/>
+    
+    <property name="cash" column="cash"/>
+    <property name="shares" column="shares"/>
+    <property name="otherLiquid" column="otherliquid"/>
+    <property name="residentialProperty" column="residentialproperty"/>
+    <property name="investmentProperty" column="investmentproperty"/>
+    <property name="otherassets" column="otherassets"/>
+    <property name="otherassetsDetails" column="otherassetsdetails"/>
+    <property name="otherLoansSecured" column="otherloanssecured"/>
+    <property name="loansResProperty" column="loansresproperty"/>
+    <property name="loansInvProperty" column="loansinvproperty"/>
+    <property name="loansPersonalUnse" column="loanspersonalunse"/>
+    <property name="guaranteesGranted" column="guaranteesgranted"/>
+    <property name="otherLiabilities" column="otherliabilities"/>
+    <property name="otherLiabilitiesDetails" column="otherliabilitiesdetails"/>
+    <property name="salary" column="salary"/>
+    <property name="rentalAndDividend" column="rentalanddividend"/>
+    <property name="otherIncome" column="otherincome"/>
+    <property name="otherIncomeDetails" column="otherincomedetails"/>
+    <property name="taxPayable" column="taxpayable"/>
+    <property name="taxPayableDate" column="taxpayabledate"/>
+    <property name="intSecuredLoans" column="intsecuredloans"/>
+    <property name="intUnsecuredLoans" column="intunsecuredloans"/>
+    <property name="livingExpenses" column="livingexpenses"/>
+    <property name="otherExpenses" column="otherexpenses"/>
+    <property name="otherExpensesDetails" column="otherexpensesdetails"/>
+
+  </class>
+</hibernate-mapping>

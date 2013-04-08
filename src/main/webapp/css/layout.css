@@ -1,0 +1,657 @@
+/* ----------------------------------------------------------- main elements. */
+
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family:  Tahoma, Helvetica, Verdana, Arial, sans-serif; 
+  font-size: 11px;
+}
+
+html * {
+  padding: 0px;
+  margin: 0px;
+}	
+
+h1 {
+  height: 43px; 
+  padding: 5px 5px;
+  margin: 5px 0px 10px 0px;
+  
+  background-image: url('/opi/images/red-bar-top.bmp');
+  background-position: top;
+  background-repeat: no-repeat;
+
+  color: white; 
+  font-size: 26px; 
+  font-weight: bold; 
+  
+}
+
+h2 {
+  margin: 0px;
+  padding: 10px 0px 15px 0px;
+  font-weight: bold;
+  color: #3F799F;
+  font-size: 12px;
+}
+
+h3 {
+  margin: 0px;
+  padding: 15px 0px 10px 0px;
+  font-weight: bold;
+  color: #3F799F;
+  font-size: 11px;
+}
+		
+
+fieldset {
+  padding: 10px 15px 15px 15px; 
+  margin: 20px 0px 10px 0px; 
+  
+  border: 1px solid #D0D0BF;
+}
+
+fieldset legend {
+  margin: 0px;
+  padding: 0px 5px;
+  font-weight: bold;
+  color: #343A7C;
+}
+
+button,
+input.button {
+  padding: 2px 15px;
+  margin: 0px;
+  width: auto;
+	overflow: visible;
+}
+
+a {
+  color: #0770B1;
+}
+
+p {
+	margin: 5px 0px;
+	padding-bottom: 4px;
+}
+
+p.normal {
+	line-height: 16px;
+	margin-bottom: 7px;
+	letter-spacing: 0.2px;
+}
+
+p.foot-note {
+	padding: 3px 0px 15px 0px;
+	font-size: 11px;
+	color: #467FAA;
+	margin: 0px;
+	line-height: 17px;
+}
+
+ul.square {
+	list-style-type: square;
+	margin: 5px;
+	padding: 5px 10px; 
+}
+
+ul.square li {
+	padding-bottom: 8px;
+}
+	
+/* ------------------------------------------------------ universal elements. */
+
+img {
+  border: none;
+}
+
+#wrapper {
+  width: 900px;
+  margin: 0px auto;
+}
+
+
+hr.clear {
+  margin: 0px;
+  padding: 0px;
+  visibility: hidden;
+  clear: both;
+}
+
+br.clear {
+  margin: 0px;
+  padding: 0px;
+  line-height: 0px;
+  visibility: hidden;
+  clear: both;
+}
+
+option {
+	padding: 0px 2px;
+}
+
+.red,
+.mandatoryField {
+	color: red !important;
+}
+
+.auto {
+	width: auto !important;
+}
+
+.wide {
+	width: 100%;
+}
+
+.centered {
+	float: none;
+	margin: 0px auto;
+}
+
+/* ---------------------------------------------------------- Standard Table. */
+
+table {
+  width: 100%;
+}
+
+table.data {
+  border-top: 2px solid #3F799F;
+  margin-top: 10px;
+}
+
+
+table thead tr {
+	background: #e0e0e0;
+}
+
+table thead tr th {
+  padding: 6px 3px 6px 3px;
+  
+  text-align: left;
+  
+  color: #343A7C;
+}
+
+table tbody tr {
+
+}
+
+table tbody tr td {
+  padding: 6px 3px;
+  border-bottom: 1px solid #5C9103; 
+  color: #333333;
+
+  font-family:  Arial, Tahoma, Helvetica, Verdana, Arial, sans-serif; 
+  font-size: 11px;
+}
+
+table tbody tr td a {
+  font-weight: bold;
+  font-size: 11px;
+}
+
+table tbody tr td.last-row {
+  border-bottom: 2px solid #3F799F;
+  padding-bottom: 15px;
+}
+
+table.normal * {
+	border: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+/* ------------------------------------------------- Info and Error Messages. */
+
+div.messages {
+
+}
+
+div.messages p {
+	padding: 5px 10px;
+	margin-bottom: 15px;
+	
+	border: 1px solid #D0D0BF;
+	background: #E5FAB2;
+	
+	line-height: 17px;
+}
+
+div.info-box {
+	padding: 5px 10px;
+	margin-bottom: 15px;
+	
+	border: 1px solid #D0D0BF;
+	background: #E5FAB2;
+}
+
+/* --------------------------------------------------------- Form decoration. */
+
+div.form-group {
+	float: left;
+	
+	padding: 5px 10px;
+	
+	margin-bottom: 10px;
+	
+	background: #F9F9F9;
+	border: 1px solid #F5F5F5;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+}
+
+div.form-group br {
+	clear: both;
+}
+
+div.form-group hr:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+div.form-row {
+	width: 880px; /* 900 - padding(2*10px) = 880 */
+	
+	float: left;
+	
+	padding: 5px 0px;
+	
+	border-bottom: 1px dashed #DDE2E5;
+}
+
+div.form-row label {
+	float: left;
+  width: 170px;
+  
+  margin-right: 10px;
+  
+  color: #465164;
+}
+div.form-row p.label {
+	float: left;
+  width: 170px;
+  
+  margin-right: 10px;
+  
+  color: #465164;
+}
+div.form-row label.auto {
+	width: auto;
+}
+
+div.form-row .attached {
+	margin-left: 10px;
+	float: left;
+}
+	
+div.form-row input,
+div.form-row select,
+div.form-row textarea {
+	float: left;
+	
+	width: 630px;
+	
+	margin-right: 10px;
+}
+
+div.last-row {
+	border-bottom: none;
+}
+
+div.two-columns {
+	float: left;
+}
+
+div.two-columns div.form-row label {
+}
+
+div.two-columns div.form-row input,
+div.two-columns div.form-row select,
+div.two-columns div.form-row textarea {
+	width: 180px;
+	
+}
+
+div.two-columns div.first-column {
+	float: left;
+
+	width: 430px;
+}
+
+div.two-columns div.first-column div.form-row {
+	width: 100%;
+}
+
+div.two-columns div.second-column {
+	float: right;
+	
+	width: 430px;
+}
+
+div.two-columns div.second-column div.form-row {
+	width: 100%;
+}
+
+/** override values */
+
+div.two-columns div.form-row input.short,
+div.form-row input.short,
+div.two-columns div.form-row select.short,
+div.form-row select.short {
+	width: 100px;
+}
+
+div.two-columns div.form-row input.veryShort,
+div.form-row input.veryShort {
+	width: 40px;
+}
+
+div.two-columns div.form-row select.verySmall,
+div.form-row select.verySmall {
+	width: 60px;
+}
+
+div.two-columns div.form-row input.checkbox,
+div.form-row input.checkbox {
+  width: auto;
+}
+
+div.two-columns div.form-row input.has-date,
+div.form-row input.has-date {
+  width: 70px;
+}
+
+div.two-columns div.form-row input.checkbox,
+div.form-row input.checkbox {
+  width: auto;
+}
+
+
+div.form-cell {
+  float: left;
+  
+  border-bottom: 1px dashed #C2D3EB;
+  
+  padding: 5px 0px;
+  margin: 0px 5px 10px 0px;
+  
+  width: 380px;
+}
+
+div.form-cell label {
+  float: left;
+  
+  border: 1px solid #C2D3EB;
+  
+  color: #333333;
+}
+
+div.form-cell select,
+div.form-cell input,
+div.form-cell textarea {
+  float: left;
+  border: 1px solid #C2D3EB;
+  
+  color: #333333;
+}
+
+div.last-cell {
+  border-bottom: none;
+}
+
+div.button-row {
+  clear: both;
+  
+  border-top: 1px solid #C2D3EB;
+  padding-top: 5px;
+  
+  text-align: right;
+
+  direction: rtl;
+}
+
+div.button-row button,
+div.button-row input.button {
+	float: right;
+	overflow: visible;
+}
+
+div.form-group div.button-row button,
+	div.form-group div.button-row input.button {
+  float: none;
+}
+
+div.button-row button.attached,
+div.button-row input.attached {
+	margin-right: 10px;
+}
+
+/* ------------------------------------------------------------ header block. */
+
+#header {
+  text-align: center;
+}
+
+/* ------------------------------------------------------------ footer block. */
+
+#footer {
+  padding-top: 15px;
+}
+
+/* ------------------------------------------------------- breadcrumb header. */
+
+div.breadcrumb-left {
+  float: left;
+  height: 14px; 
+  padding: 3px 0px; 
+  
+  text-align: left;
+}
+
+div.breadcrumb-left a:link,
+div.breadcrumb-left a:visited,
+div.breadcrumb-left a:hover,
+div.breadcrumb-left a:active {
+  margin-right: 10px;
+  
+  text-decoration: none; 
+  font-family: "trebuchet ms", verdana, arial; 
+  font-weight: bold; 
+  font-size: 11px; 
+  color: #0770B1; 
+}
+
+div.breadcrumb-right {
+  float: right;
+  height: 14px; 
+  padding: 3px; 
+  
+  text-align: left;
+}
+
+div.breadcrumb-right a:link,
+div.breadcrumb-right a:visited,
+div.breadcrumb-right a:hover,
+div.breadcrumb-right a:active {
+  margin-left: 10px;
+  
+  text-decoration: none; 
+  font-family: "trebuchet ms", verdana, arial; 
+  font-weight: bold; 
+  font-size: 11px; 
+  color: #0770B1; 
+}
+
+/* -------------------------------------------------- Custom Main Page Stuff. */
+
+div.create-application {
+  padding: 10px;
+  border: 1px solid #D0D0BF;
+  width: 750px;
+  margin: 0px auto;
+}
+
+div.create-application label#labelSelectInvestor {
+  float: left;
+  
+  margin-left: 10px;
+  padding-top: 3px;
+  
+  color: #333333;
+}
+
+div.create-application select#selectInvestor {
+  float: left;
+  
+  margin-left: 20px;
+  
+  width: 180px;
+  color: #333333;
+}
+
+div.create-application label#labelSelectProduct {
+  float: left;
+  
+  width: auto;
+  margin-left: 20px;
+  padding-top: 3px;
+    
+  color: #333333;
+}
+
+div.create-application select#selectProduct {
+  float: left;
+  
+  width: 180px;
+  margin-left: 20px;
+  color: #333333;
+}
+
+div.create-application button#buttonCreate {
+  margin-left: 20px;
+  float: left;
+}
+
+div#create-application-super {
+	float: left;
+  padding: 10px;
+  border: 1px solid #D0D0BF;
+  width: 880px;
+  margin: 0px auto;
+  margin-bottom: 10px;
+}
+
+div#create-application-super * {
+	float: left;
+}
+
+div#create-application-super option {
+	float: none;
+}
+
+div#create-application-super .attached {
+	margin-left: 10px;
+}
+
+div#create-application-super label.attached {
+	margin-left: 20px;
+}
+
+div#create-application-super select {
+	width: 140px;
+}
+
+div#top-box {
+	float: left;
+  padding: 10px;
+  border: 1px solid #D0D0BF;
+	width: auto;
+  margin: 0px auto;
+  margin-bottom: 10px;
+}
+
+div#top-box * {
+	float: left;
+}
+
+div#top-box option {
+	float: none;
+}
+
+div#top-box .attached {
+	margin-left: 10px;
+}
+
+div#top-box label.attached {
+	margin-left: 20px;
+}
+
+div#top-box select {
+	width: 140px;
+}
+
+/* ---------------------------------------------- Source Of Wealth Checkboxes */
+
+div.checkboxfield {
+  float: left;
+}
+
+div.checkboxfield label {
+	float: left;
+	width: auto; 
+	
+	margin: 0px 5px; 
+	padding: 2px 0px 0px 0px;
+}
+
+div.checkboxfield input {
+	width: auto;
+	margin-right: 20px;
+}
+
+/* --------------------------------------------------------------- Text boxes */
+
+.blue-box {
+	margin: 0px;
+	padding: 10px 10px 0px 10px;
+	border: 2px solid #8181DF; 
+	background: #C2C2F0; 
+	color: black; 
+	font-weight: bold; 
+	font-size: 13px;
+}
+
+.blue-box p {
+	padding: 0px;
+	margin: 0px 0px 10px 0px;
+	line-height: 16px;
+}
+
+
+p.error {
+	color: red; 
+	font-weight: bold;
+}
+
+/* --------------------------------------------------------------- Login Page */
+
+form#login div.form-group {
+  width: 450px; 
+  float: none;
+  margin: 10px auto;
+}
+
+form#login div.form-group div.form-row {
+  width: auto;
+  padding: 10px;
+}
+
+form#login div.form-group div.form-row button {
+	float: right;
+	margin-top: -4px;
+}
+
+

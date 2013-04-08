@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+  - DispatcherServlet application context for Opi's web tier.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+  
+  <!-- ========================= MESSAGE SOURCE DEFINITION ========================= -->
+  <!--
+    - Message source for this context, loaded from localized "messages_xx" files.
+    - Could also reside in the root application context, as it is generic,
+    - but is currently just used within Opi's web tier.
+  -->
+  <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+    <property name="basename" value="messages"/>
+  </bean>
+
+  <bean id="themeResolver" class="org.springframework.web.servlet.theme.CookieThemeResolver">
+    <property name="defaultThemeName" value="bis"/>
+    <property name="cookieName" value="opi"/>
+  </bean>
+
+  <bean id="providerParamInterceptor" class="com.ubs.opi.web.interceptor.OpiThemeChangeInterceptor">
+    <property name="paramName" value="provider"/>
+  </bean>
+  
+  <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+    <property name="cookieName" value="clientlanguage"/>
+    <property name="cookieMaxAge" value="100000"/>
+    <property name="defaultLocale" value="en_AU"/>
+  </bean>
+
+  <!-- ========================= MAPPING DEFINITIONS ========================= -->
+  <!--
+    - This bean is an explicit URL mapper that is used by the "opi" DispatcherServlet
+    - It is used instead of the default BeanNameUrlHandlerMapping.
+  -->
+  <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    <property name="interceptors">
+      <list>
+        <bean class="com.ubs.opi.web.interceptor.DateInsertionInterceptor">
+           <property name="opi" ref="opi" />
+        </bean>
+        <ref local="providerParamInterceptor"/>
+      </list>
+    </property>
+    <property name="mappings">
+      <props>
+        <prop key="/advisorindividuals.htm">opiController</prop>
+        <prop key="/checklist.htm">opiController</prop>
+        <prop key="/logout.htm">opiController</prop>
+        <prop key="/pixml.pdf">opiController</prop>
+      </props>
+    </property>
+    <property name="order" value="1"/>
+  </bean>
+  
+  <bean id="handlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+    <property name="interceptors">
+      <list>
+        <ref local="providerParamInterceptor"/>
+      </list>
+    </property>
+    <property name="order" value="2"/>
+  </bean>
+  
+  <!--
+    - This bean resolves default view names for controllers that do not explicitly
+    - specify a view name in their return ModelAndView (see OpiController).
+    - This translator takes the request URL and extracts a view name from it: e.g.
+    - "/welcome.html" -> "welcome", plus configured "View" suffix -> "welcomeView".
+  -->
+  <bean id="viewNameTranslator" class="org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator">
+    <property name="suffix" value="View" />
+  </bean>
+  
+  <!-- ====================================================== VIEW RESOLVERS -->
+  
+  <!--
+    - View resolver that looks at views.properties to determine what a
+    - controller's result should be mapped to.
+    -
+    -->
+  <bean id="viewResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+    <property name="basename" value="views" />
+    <property name="order" value="1"/>
+  </bean>
+  
+  <!--
+    - View resolver that simply calls the JSP with the same name as the
+    - result of a controller.
+    -
+    -->
+  <bean id="viewResolverJsp" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="prefix" value="/WEB-INF/jsp/"/>
+    <property name="suffix" value=".jsp"/>
+    <property name="order" value="2"/>
+  </bean>
+
+  <!--
+    - This bean resolves specific types of exception to corresponding error 
+    - views.
+    - 
+    - The default behaviour of DispatcherServlet is to propagate all exceptions 
+    - to the servlet container: This will happen here with all other types 
+    - of exception.
+    -
+    -->
+  <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    <property name="exceptionMappings">
+      <props>
+        <prop key="org.springframework.dao.DataAccessException">dataAccessFailure</prop>
+        <prop key="org.springframework.transaction.TransactionException">dataAccessFailure</prop>
+      </props>
+    </property>
+  </bean>
+  
+  <!-- ========================= CONTROLLER DEFINITIONS ========================= -->
+  
+  <bean name="/applicationwizard.htm" class="com.ubs.opi.web.controller.application.ApplicationWizardFormController">
+    <property name="commandName" value="application"/>
+    <property name="commandClass" value="com.ubs.opi.domain.Application"/>
+    <property name="allowDirtyBack" value="true"/>
+    <property name="allowDirtyForward" value="true"/>
+    <property name="pages">
+      <list>
+        <value>investor-details</value>
+        <value>beneficiaries</value>
+        <value>investment-details</value>
+        <value>finance</value>
+        <value>direct-debit</value>
+        <value>other-investments</value>
+        <value>confirmation</value>
+      </list>
+    </property>
+    <property name="opiService" ref="opiService"/>
+  </bean>
+  
+  <!--
+    - This bean is a MultiActionController that manages general View rendering.
+    - It uses the "ControllerResolver" bean below for method name resolution.
+  -->
+  <bean id="opiController" class="com.ubs.opi.web.OpiController">
+    <property name="methodNameResolver">
+      <bean class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+        <property name="mappings">
+          <props>
+            <prop key="/checklist.htm">checklistHandler</prop>
+            <prop key="/advisorindividuals.htm">advisorindividualsHandler</prop>
+            <prop key="/advisorfirm.htm">advisorfirmHandler</prop>
+            <prop key="/logout.htm">logoutHandler</prop>
+            <prop key="/pixml.pdf">pdfHandler</prop>
+          </props>
+        </property>
+      </bean>
+    </property>
+    <property name="opi" ref="opi" />
+    <property name="pixml" ref="pixml" />
+    <property name="applicationService" ref="applicationService" />
+  </bean>
+  
+  <bean name="/login.htm" class="com.ubs.opi.web.controller.login.LoginController">
+    <property name="formView" value="login"/>
+  </bean>
+  
+  <bean name="/mainpage_redirect.htm" class="com.ubs.opi.web.controller.login.MainPageRedirectionController">
+    <property name="opiService" ref="opi"/>
+  </bean>
+  
+  <bean name="/forgotpassword.htm" class="com.ubs.opi.web.controller.login.ForgotPasswordController">
+    <property name="formView" value="forgotpassword"/>
+    <property name="successView" value="redirect:/emailsent.htm" />
+    <property name="opi" ref="opi" />
+  </bean>
+  
+  <bean name="/emailsent.htm" class="com.ubs.opi.web.controller.login.EmailSendController">
+    <property name="formView" value="emailsent"/>
+  </bean>
+  
+  <!--
+    - This bean is a MethodNameResolver definition for a MultiActionController.
+    - It maps URLs to methods for the "opiController" bean.
+  -->
+
+
+  <bean name="/findDealergroups.htm" class="com.ubs.opi.web.FindDealergroupsForm">
+    <property name="formView" value="findDealergroups" />
+    <property name="selectView" value="dealergroups" />
+    <property name="successView" value="redirect:/advisorcomplete.htm" />
+    <property name="validator" ref="findDealerGroupFormValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+  
+  <bean name="/addDealergroup.htm" class="com.ubs.opi.web.AddDealergroupForm">
+    <property name="formView" value="dealergroupForm" />
+    <property name="successView" value="redirect:/dealergroup.htm" />
+    <property name="validator" ref="dealergroupValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+  
+  <bean name="/guruusers.htm" class="com.ubs.opi.web.GuruusersForm">
+    <property name="formView" value="guruusers" />
+    <property name="createadvisorView" value="redirect:/findDealergroups.htm" />
+    <property name="advisorfirmsView" value="redirect:/advisorfirms.htm" />
+    <property name="existingView" value="redirect:/guruusers.htm" />
+    <property name="validator" ref="guruusersValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+
+  <bean name="/superusers.htm" class="com.ubs.opi.web.SuperusersForm">
+    <property name="formView" value="superusers" />
+    <property name="successView" value="redirect:/addAdvisorapplication.htm" />
+    <property name="createadvisorView" value="redirect:/findDealergroups.htm" />
+    <property name="existingView" value="redirect:/superusers.htm" />
+    <property name="validator" ref="superusersValidator" />
+    <property name="superUserService" ref="superUserService"/>
+    <property name="opi" ref="opi" />
+  </bean>
+
+  <bean name="/bdmusers.htm" class="com.ubs.opi.web.BdmUsersForm">
+    <property name="formView" value="bdmusers" />
+    <property name="successView" value="redirect:/bdmusers.htm" />
+    <property name="bdmView" value="redirect:/bdm.htm" />
+    <property name="validator" ref="bdmusersValidator" />
+    <property name="opi" ref="opi" />
+    <property name="bdmAdminService" ref="bdmAdminService" />
+  </bean>
+  
+  <bean name="/bdm.htm" class="com.ubs.opi.web.BdmForm">
+    <property name="formView" value="bdmForm" />
+    <property name="successView" value="redirect:/bdmusers.htm" />
+    <property name="validator" ref="bdmValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+
+  <bean name="/advisorapplications.htm" class="com.ubs.opi.web.AdvisorapplicationsForm">
+    <property name="formView" value="advisorapplications" />
+    <property name="successView" value="redirect:/addAdvisorapplication.htm" />
+    <property name="validator" ref="advisorapplicationsValidator" />
+    <property name="advisorService"><ref bean="advisorService"/></property>
+    <property name="opi" ref="opi" />
+  </bean>
+  
+  <bean name="/deleteapplication.htm" class="com.ubs.opi.web.DeleteApplicationController">
+    <property name="successView" value="redirect:/advisorapplications.htm" />
+    <property name="advisorService" ref="advisorService" />
+  </bean>
+  
+  <bean name="/advisorapplication.htm" class="com.ubs.opi.web.AdvisorapplicationForm">
+    <property name="formView" value="advisorapplicationForm" />
+    <property name="successView" value="redirect:/investmentdetails.htm" />
+    <property name="validator" ref="applicationSummaryValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+  
+  <bean name="/changepassword.htm" class="com.ubs.opi.web.ChangepasswordForm">
+    <property name="formView" value="changepassword" />
+    <property name="successView" value="redirect:/advisorapplications.htm" />
+    <property name="validator" ref="changepasswordValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+  
+  <bean name="/addAdvisorapplication.htm" class="com.ubs.opi.web.AddAdvisorapplicationForm">
+    <property name="formView" value="addadvisorapplicationForm" />
+    <property name="successView" value="redirect:/investmentdetails.htm" />
+    <property name="beneficiaryView" value="redirect:/beneficiary.htm" />
+    <property name="validator" ref="advisorapplicationFormValidator" />
+    <property name="opi" ref="opi" />
+    <property name="advisorService" ref="advisorService" />
+  </bean>
+  
+  <bean id="abstractOpiController" class="com.ubs.opi.web.controller.AbstractOpiController" abstract="true" >
+    <property name="applicationService" ref="applicationService" />
+    <property name="commandName" value="application" />
+    <property name="sessionForm" value="true" />
+  </bean>
+
+  <bean name="/investmentdetails.htm" class="com.ubs.opi.web.controller.InvestmentDetailsController" parent="abstractOpiController">
+    <property name="formView" value="investmentdetails" />
+    <property name="ownfundsView" value="redirect:/directdebitcredit.htm" />
+    <property name="successView" value="redirect:/financials.htm" />
+    <property name="validator" ref="applicationFormValidator" />
+  </bean>
+
+  <bean name="/financials.htm" class="com.ubs.opi.web.FinancialsForm">
+    <property name="formView" value="financials" />
+    <property name="successView" value="redirect:/directdebitcredit.htm" />
+    <property name="additionalGuarantorsView" value="redirect:/guarantors.htm" />
+    <property name="validator" ref="financialsFormValidator" />
+    <property name="opi" ref="opi" />
+    <property name="advisorService" ref="advisorService"/>
+  </bean>
+  
+  <bean name="/guarantors.htm" class="com.ubs.opi.web.AdditionalGuarantorsForm">
+    <property name="formView" value="guarantors" />
+    <property name="successView" value="redirect:/directdebitcredit.htm" />
+    <property name="validator">
+      <bean class="com.ubs.opi.validation.AdditionalGuarantorsFormValidator">
+        <property name="advisorService" ref="advisorService" />
+      </bean>
+    </property>
+    <property name="opi" ref="opi" />
+    <property name="advisorService" ref="advisorService" />
+  </bean>
+  
+  <bean name="/beneficiary.htm" class="com.ubs.opi.web.BeneficiaryForm">
+    <property name="formView" value="beneficiaryForm" />
+    <property name="successView" value="redirect:/investmentdetails.htm" />
+    <property name="validator" ref="beneficiaryFormValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+  
+  <bean name="/directdebitcredit.htm" class="com.ubs.opi.web.controller.DirectDebitAndCreditDetailsController" parent="abstractOpiController">
+    <property name="formView" value="directdebitcredit" />
+    <property name="successView" value="redirect:/investorinfo.htm" />
+    <property name="validator" ref="directDebitCreditFormValidator" />
+    <property name="advisorService" ref="advisorService" />
+  </bean>
+  
+  <bean name="/investorinfo.htm" class="com.ubs.opi.web.InvestorinfoForm">
+    <property name="formView" value="investorinfo" />
+    <property name="successView" value="redirect:/confirmation.htm" />
+    <property name="validator" ref="investorinfoFormValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+  
+  <bean name="/confirmation.htm" class="com.ubs.opi.web.ConfirmationForm">
+    <property name="formView" value="confirmation" />
+    <property name="successView" value="redirect:/advisorapplications.htm" />
+    <property name="validator" ref="confirmationValidator" />
+    <property name="opi" ref="opi" />
+    <property name="opiService" ref="opiService" />
+  </bean>
+
+  <bean name="/dealergroupConf.htm" class="com.ubs.opi.web.DealergroupConfForm">
+    <property name="formView" value="dealergroup" />
+    <property name="successView" value="redirect:/emailConf.htm" />
+    <property name="existingView" value="redirect:/dealergroupConf.htm" />
+    <property name="changepasswordView" value="redirect:/changepassword.htm" />
+    <property name="validator" ref="dealergroupConfValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+  
+  <bean name="/emailConf.htm" class="com.ubs.opi.web.EmailConfForm">
+    <property name="formView" value="emailconfirmation" />
+    <property name="successView" value="redirect:/login.htm" />
+    <property name="validator" ref="emailConfValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+  
+  <bean name="/editDealergroup.htm" class="com.ubs.opi.web.EditDealergroupForm">
+    <property name="formView" value="dealergroupForm" />
+    <property name="successView" value="redirect:/dealergroup.htm" />
+    <property name="validator" ref="dealergroupValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+
+  <bean name="/editIndividual.htm" class="com.ubs.opi.web.EditIndividualForm">
+    <property name="formView" value="individualForm" />
+    <property name="successView" value="redirect:/advisorapplication.htm" />
+    <property name="validator" ref="individualValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+
+  <bean name="/addIndividual.htm" class="com.ubs.opi.web.AddIndividualForm">
+    <property name="formView" value="individualForm" />
+    <property name="successView" value="redirect:/advisorapplication.htm" />
+    <property name="validator" ref="individualValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+
+  <bean name="/advisors.htm" class="com.ubs.opi.web.AdvisorsForm">
+    <property name="formView" value="advisors" />
+    <property name="successView" value="redirect:/applications.htm" />
+    <property name="startView" value="redirect:/guruusers.htm" />
+    <property name="previousView" value="redirect:/advisorfirms.htm" />
+    <property name="validator" ref="advisorsValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+
+  <bean name="/applications.htm" class="com.ubs.opi.web.ApplicationsForm">
+    <property name="formView" value="applications" />
+    <property name="successView" value="redirect:/applications.htm" />
+    <property name="previousView" value="redirect:/advisors.htm" />
+    <property name="validator" ref="applicationsValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+
+  <bean name="/advisorfirms.htm" class="com.ubs.opi.web.AdvisorfirmsForm">
+    <property name="formView" value="advisorfirms" />
+    <property name="successView" value="redirect:/advisors.htm" />
+    <property name="existingView" value="redirect:/advisorfirms.htm" />
+    <property name="previousView" value="redirect:/guruusers.htm" />
+    <property name="validator" ref="advisorfirmsValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+
+  <bean name="/advisorcomplete.htm" class="com.ubs.opi.web.AddAdvisorCompleteForm">
+    <property name="formView" value="advisorcompleteForm" />
+    <property name="superusersView" value="redirect:/addAdvisorapplication.htm" />
+    <property name="successView" value="redirect:/dealergroupConf.htm" />
+    <property name="validator" ref="advisorCompleteValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+
+  <bean name="/addAdvisorindividual.htm" class="com.ubs.opi.web.AddAdvisorindividualForm">
+    <property name="formView" value="advisorindividualForm" />
+    <property name="successView" value="redirect:/advisorindividuals.htm" />
+    <property name="validator" ref="individualValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+
+  <bean name="/editAdvisorfirm.htm" class="com.ubs.opi.web.EditAdvisorfirmForm">
+    <property name="formView" value="advisorfirmForm" />
+    <property name="successView" value="redirect:/dealergroup.htm" />
+    <property name="validator" ref="advisorfirmValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+
+  <bean name="/editAdvisor.htm" class="com.ubs.opi.web.EditAdvisorForm">
+    <property name="formView" value="advisorForm" />
+    <property name="successView" value="redirect:/advisorapplications.htm" />
+    <property name="validator" ref="advisorValidator" />
+    <property name="opi" ref="opi" />
+    <property name="advisorService" ref="advisorService"/>
+  </bean>
+
+  <bean name="/addAdvisor.htm" class="com.ubs.opi.web.AddAdvisorForm">
+    <property name="formView" value="advisorForm" />
+    <property name="successView" value="redirect:/dealergroup.htm" />
+    <property name="validator" ref="individualValidator" />
+    <property name="opi" ref="opi" />
+  </bean>
+
+  <bean id="changepasswordValidator" class="com.ubs.opi.validation.ChangepasswordValidator" />
+  <bean id="emailConfValidator" class="com.ubs.opi.validation.EmailConfValidator" />
+  <bean id="dealergroupConfValidator" class="com.ubs.opi.validation.DealergroupConfValidator" />
+  <bean id="dealergroupValidator" class="com.ubs.opi.validation.DealergroupValidator" />
+  <bean id="advisorValidator" class="com.ubs.opi.validation.AdvisorValidator" />
+  <bean id="advisorsValidator" class="com.ubs.opi.validation.AdvisorsValidator" />
+  <bean id="advisorfirmValidator" class="com.ubs.opi.validation.AdvisorfirmValidator" />
+  <bean id="advisorfirmsValidator" class="com.ubs.opi.validation.AdvisorfirmsValidator" />
+  <bean id="directDebitCreditFormValidator" class="com.ubs.opi.validation.DirectDebitCreditFormValidator" />
+  <bean id="financialsFormValidator" class="com.ubs.opi.validation.FinancialsFormValidator" />
+  <bean id="beneficiaryFormValidator" class="com.ubs.opi.validation.BeneficiaryFormValidator" />
+  <bean id="advisorCompleteValidator" class="com.ubs.opi.validation.AdvisorCompleteValidator" />
+  <bean id="advisorapplicationsValidator" class="com.ubs.opi.validation.AdvisorapplicationsValidator" />
+  <bean id="advisorapplicationFormValidator" class="com.ubs.opi.validation.AdvisorapplicationFormValidator" />
+  <bean id="applicationFormValidator" class="com.ubs.opi.validation.ApplicationFormValidator" />
+  <bean id="applicationsValidator" class="com.ubs.opi.validation.ApplicationsValidator" />
+  <bean id="applicationSummaryValidator" class="com.ubs.opi.validation.ApplicationSummaryValidator" />
+  <bean id="investorinfoFormValidator" class="com.ubs.opi.validation.InvestorinfoFormValidator" />
+  <bean id="confirmationValidator" class="com.ubs.opi.validation.ConfirmationValidator" />
+  <bean id="findDealerGroupFormValidator" class="com.ubs.opi.validation.FindDealerGroupFormValidator" />
+  <bean id="guruusersValidator" class="com.ubs.opi.validation.GuruusersValidator" />
+  <bean id="superusersValidator" class="com.ubs.opi.validation.SuperusersValidator" />
+  <bean id="bdmusersValidator" class="com.ubs.opi.validation.BdmUsersValidator" />
+  <bean id="bdmValidator" class="com.ubs.opi.validation.BdmValidator" />
+  <bean id="logonValidator" class="com.ubs.opi.validation.LogonValidator" />
+  <bean id="individualValidator" class="com.ubs.opi.validation.IndividualValidator" />
+
+</beans>

@@ -1,0 +1,182 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt1" uri="http://java.sun.com/jsp/jstl/fmt"  %>
+<%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>OPI - Direct Debit</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  
+    <jsp:include flush="true" page="/WEB-INF/jsp/includes/scripts_and_styles.jsp"/>
+    
+    <script type="text/javascript">
+      function fillAddress(id) {
+        var idval = id;
+        //alert(idval);
+        var bsb = dwr.util.getValue("bsb");
+        Opi.fillAddress(bsb,idval, 
+      	  function(address) {
+      		dwr.util.setValues(address);
+      	  }
+        );
+      }
+      
+      function cancel() {
+        if (confirm("Abandon changes made on this page?")) {
+          document.location.href = '${startpage}';
+        }
+      }
+    </script>
+
+  </head>
+  
+  <body>
+    <div id="wrapper">
+    
+      <jsp:include flush="true" page="/WEB-INF/jsp/includes/header.jsp"/>
+      
+      <!-- content -->
+      <div id="content">
+        <div class="breadcrumb-left">&#160;</div>
+        <div class="breadcrumb-right">
+          <a title="Logout of OPI" href="<c:url value="/j_spring_security_logout"/>">&gt;Logout</a>
+          <a title="Show help page" href="javascript:ShowWinContact();%20void(0);">&gt;Help</a>
+        </div>
+        
+        <br class="clear"/>
+        
+        <h1>Direct Debit Authorisation</h1>
+        
+        <jsp:include flush="true" page="/WEB-INF/jsp/includes/errors_and_messages.jsp"/>
+
+        <div class="messages">
+          <p>
+            UBS Australia will direct debit interest and any protection fee for loan or put applications from the bank account
+            specified below. Interest rates will be set by UBS Australia on or around 13th June 2007, and will be posted on
+            the HFA website at
+            <a href="http://www.hfainvestments.com.au" target="_blank">www.hfainvestments.com.au</a>.
+            <br/>
+            If an investor funds their own investment, HFA will direct debit the investment amount from the bank account
+            specified below when the application is accepted.
+          </p>
+        </div>
+        
+        <p class="foot-note">
+          An amount sufficient to cover the total payment obligations must be in the specified account by no later than
+          <strong>15th June 2007</strong>.
+        </p>
+        <p class="foot-note">
+          Please note that you cannot supply a third party bank account. The bank account below must be in the name of the
+          investor(s) making this application.
+        </p>
+        
+        <form:form>
+          <spring:nestedPath path="application">
+          
+            <h2>Client Account Details</h2>
+            
+            <c:set var="applicationid" value="${application.id}"/>
+            
+            <div class="form-group">
+              <div class="two-columns">
+                <div class="first-column">
+                  <div class="form-row">
+                    <tag:formField2Col id="bsb" name="BSB Number" path="ddbsb" dimension="short" mand="true" onblur="fillAddress('${applicationid}')"/>
+                  </div>
+                  <div class="form-row last-row">
+                    <tag:formField2Col name="Name of Account" path="ddaccountname" dimension="medium" mand="true" maxlength="80" />
+                  </div>
+                </div>
+                <div class="second-column">
+                  <div class="form-row">
+                    <tag:formField2Col id="ddAccountType" name="Account Type" path="ddAccountType" dimension="short" mand="true"/>
+                  </div>
+                  <div class="form-row last-row">
+                    <tag:formField2Col id="accountno" name="A/C Number" path="ddaccountno" dimension="short" mand="true" maxlength="10" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <hr class="clear"/>
+            
+            <h2>Financial Institution Details</h2>
+              
+            <div class="form-group">
+              <div class="two-columns">
+                <div class="first-column">
+                  <div class="form-row">
+                    <tag:formField2Col id="name" name="Financial institution name" path="ddinstitution" dimension="medium"
+                      mand="true" maxlength="25" />
+                  </div>
+                  <div class="form-row">
+                    <tag:formField2Col id="address1" name="Branch Address" path="ddinstitutionaddress" dimension="medium"
+                      mand="true" maxlength="48" />
+                  </div>
+                  <div class="form-row last-row">
+                    <tag:formField2Col id="suburb" name="Branch Suburb" path="ddinstitutionsuburb" dimension="medium"
+                      mand="true" maxlength="25" />
+                  </div>
+                </div>
+                <div class="second-column">
+                  <div class="form-row">
+                    <tag:formField2Col id="postcode" name="Branch Postcode" path="ddinstitutionpostcode" dimension="veryShort"
+                      mand="true" maxlength="4" />
+                  </div>
+                  <div class="form-row last-row">
+                    <tag:formStates id="state" name="Branch State" path="ddinstitutionstate" list="states" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <hr class="clear"/>
+            
+            <h2>Distributions</h2>
+
+            <p>
+              In the event that a cash distribution becomes payable by the Fund, please select what
+              your client would like to happen to the cash distribution :
+            </p>
+            
+            <div class="form-group">
+              <div class="two-columns">
+                <div class="first-column">
+                  <div class="form-row last-row">
+                    <tag:formInlineCheckBox name="Reinvest distributions with HFA Octane Global Fund"
+                          path="reinvestdistribution" />
+                  </div>
+                </div>
+                <div class="second-column">
+                  <div class="form-row last-row">
+                    <tag:formInlineCheckBox name="Direct credit distributions to the account listed above"
+                          path="directcreditdistribution" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <p class="foot-note"><span style="color: red;">#</span> Denotes a Mandatory Field</p>
+            
+            <hr class="clear"/>
+            
+            <div class="button-row">
+              <input type="submit" name="proceed" class="button" value="Proceed"/>
+              <input type="submit" name="save" class="button attached" value="Save and Return"/>
+              <button type="button" class="button attached" onclick="cancel();">Cancel</button>
+  
+              <br class="clear"/>
+            </div>
+          </spring:nestedPath>
+        </form:form>
+        
+      </div>
+      
+      <jsp:include flush="true" page="/WEB-INF/jsp/includes/footer.jsp"/>
+
+    </div>
+  </body>
+</html>

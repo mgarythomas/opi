@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.ubs.opi.domain.ApplicationDirectCreditDetails" table="APPLICATIONDIRECTCREDITDETAILS">
+    <id name="id" column="applicationid"> 
+      <generator class="foreign">
+        <param name="property">application</param>
+      </generator>
+    </id>
+    
+    <one-to-one name="application" class="com.ubs.opi.domain.Application" constrained="true"/>
+    
+    <property name="bsb" column="BSB"/>
+    <property name="accountName" column="ACCOUNTNAME"/>
+    <property name="accountType" column="ACCOUNTTYPE"/>
+    <property name="accountNumber" column="ACCOUNTNUMBER"/>
+    <property name="institution" column="INSTITUTION"/>
+    <property name="institutionAddress" column="INSTITUTIONADDRESS"/>
+    <property name="institutionSuburb" column="INSTITUTIONSUBURB"/>
+    <property name="institutionPostcode" column="INSTITUTIONPOSTCODE"/>
+    <property name="institutionState" column="INSTITUTIONSTATE"/>
+  </class>
+</hibernate-mapping>

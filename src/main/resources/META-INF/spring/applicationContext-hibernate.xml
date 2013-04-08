@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+
+	<!-- ========================= RESOURCE DEFINITIONS ========================= -->
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingResources">
+			<list>
+				<value>db/Advisor.hbm.xml</value>
+				<value>db/Advisorprovider.hbm.xml</value>
+				<value>db/Advisorfirm.hbm.xml</value>
+				<value>db/Application.hbm.xml</value>
+				<value>db/Bank.hbm.xml</value>
+				<value>db/Company.hbm.xml</value>
+				<value>db/Dealergroup.hbm.xml</value>
+				<value>db/Individual.hbm.xml</value>
+				<value>db/Investorindividual.hbm.xml</value>
+				<value>db/Users.hbm.xml</value>
+				<value>db/Product.hbm.xml</value>
+				<value>db/Authorities.hbm.xml</value>
+				<value>db/Trust.hbm.xml</value>
+				<value>db/ApplicationDirectCreditDetails.hbm.xml</value>
+				<value>db/FinancialInformation.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.generate_statistics">false</prop>
+				<!-- Drop and re-create the database schema on startup -->
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+			</props>
+		</property>
+		<property name="eventListeners">
+			<map>
+				<entry key="merge">
+					<bean
+						class="org.springframework.orm.hibernate3.support.IdTransferringMergeEventListener" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<!-- Transaction manager for a single Hibernate SessionFactory (alternative 
+		to JTA) -->
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- ========================= BUSINESS OBJECT DEFINITIONS ========================= -->
+
+
+	<!-- Pixml service using JDBC Dao -->
+	<bean id="pixml" class="com.ubs.opi.domain.PixmlDao">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+	<!-- - Transactional proxy for Opi's central data access object. - - Defines 
+		specific transaction attributes with "readOnly" markers, - which is an optimization 
+		that is particularly valuable with Hibernate - (to suppress unnecessary flush 
+		attempts for read-only operations). - - Note that in a real-life app with 
+		multiple transaction proxies, - you will probably want to use parent and 
+		child bean definitions - as described in the manual, to reduce duplication. -->
+	<bean id="opi"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="target">
+			<bean id="opiTarget" class="com.ubs.opi.service.OpiDAO">
+				<property name="dealergroupDAO" ref="DealergroupDAO" />
+				<property name="advisorfirmDAO" ref="AdvisorfirmDAO" />
+				<property name="advisorDAO" ref="AdvisorDAO" />
+				<property name="advisorproviderDAO" ref="AdvisorproviderDAO" />
+				<property name="companyDAO" ref="CompanyDAO" />
+				<property name="usersDAO" ref="UsersDAO" />
+				<property name="authoritiesDAO" ref="AuthoritiesDAO" />
+				<property name="individualDAO" ref="IndividualDAO" />
+				<property name="productDAO" ref="ProductDAO" />
+				<property name="applicationDAO" ref="ApplicationDAO" />
+				<property name="investorindividualDAO" ref="InvestorindividualDAO" />
+				<property name="trustDAO" ref="TrustDAO" />
+				<property name="bankDAO" ref="BankDAO" />
+				<property name="mailManager" ref="mailManager" />
+			</bean>
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="store*">PROPAGATION_REQUIRED</prop>
+				<prop key="remove*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="bdmAdminService"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="target">
+			<bean class="com.ubs.opi.service.BdmAdminService">
+				<property name="companyDAO" ref="CompanyDAO" />
+				<property name="individualDAO" ref="IndividualDAO" />
+				<property name="advisorproviderDAO" ref="AdvisorproviderDAO" />
+			</bean>
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="find*">PROPAGATION_SUPPORTS,readOnly</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="applicationService"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="target">
+			<bean class="com.ubs.opi.service.ApplicationService">
+				<property name="applicationDAO" ref="ApplicationDAO" />
+			</bean>
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="get*">PROPAGATION_SUPPORTS,readOnly</prop>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="advisorService"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="target">
+			<bean class="com.ubs.opi.service.AdvisorService">
+				<property name="advisorDAO" ref="AdvisorDAO" />
+				<property name="applicationDAO" ref="ApplicationDAO" />
+				<property name="productDAO" ref="ProductDAO" />
+				<property name="companyDAO" ref="CompanyDAO" />
+				<property name="financialInformationDao" ref="financialInformationDao" />
+				<property name="individualDAO" ref="IndividualDAO" />
+				<property name="investorindividualDAO" ref="InvestorindividualDAO" />
+			</bean>
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="get*">PROPAGATION_SUPPORTS,readOnly</prop>
+				<prop key="find*">PROPAGATION_SUPPORTS,readOnly</prop>
+				<prop key="load*">PROPAGATION_SUPPORTS,readOnly</prop>
+				<prop key="create*">PROPAGATION_REQUIRED</prop>
+				<prop key="set*">PROPAGATION_REQUIRED</prop>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="remove*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="superUserService"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="target">
+			<bean class="com.ubs.opi.service.SuperUserService">
+				<property name="productDAO" ref="ProductDAO" />
+			</bean>
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="get*">PROPAGATION_SUPPORTS,readOnly</prop>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="opiService"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="target">
+			<bean class="com.ubs.opi.service.OpiService">
+				<property name="advisorDao" ref="AdvisorDAO" />
+				<property name="companyDao" ref="CompanyDAO" />
+				<property name="productDao" ref="ProductDAO" />
+				<property name="applicationDao" ref="ApplicationDAO" />
+			</bean>
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="get*">PROPAGATION_SUPPORTS,readOnly</prop>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- Hibernate 3.0's JMX statistics service -->
+	<!-- Implements the StatisticsServiceMBean management interface -->
+	<bean name="opi:type=HibernateStatistics" class="org.hibernate.jmx.StatisticsService">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+	<!-- ========================= JMX EXPORTER DEFINITION ========================= -->
+
+	<!-- - Exporter that exposes Hibernate 3.0's statistics service via JMX. 
+		- Autodetects the statistics service, which is a standard MBean, - using 
+		its bean name as JMX object name. - - By default, the standard MBeanServerFactory.findMBeanServer 
+		method will be used - to determine the MBeanServer. Unfortunately, this does 
+		not work on WebLogic <= 8.1: - you need to comment in the WebLogicMBeanServerFactoryBean 
+		definition on WebLogic, - specifying appropriate configuration values there. -->
+	<bean id="jmxExporter" class="org.springframework.jmx.export.MBeanExporter">
+		<property name="autodetect" value="true" />
+	</bean>
+
+	<bean id="AuthoritiesDAO" class="com.ubs.opi.domain.AuthoritiesDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ProductDAO" class="com.ubs.opi.domain.ProductDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="DealergroupDAO" class="com.ubs.opi.domain.DealergroupDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CompanyDAO" class="com.ubs.opi.domain.CompanyDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="UsersDAO" class="com.ubs.opi.domain.UsersDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="InvestorindividualDAO" class="com.ubs.opi.domain.InvestorindividualDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="IndividualDAO" class="com.ubs.opi.domain.IndividualDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="AdvisorfirmDAO" class="com.ubs.opi.domain.AdvisorfirmDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="TrustDAO" class="com.ubs.opi.domain.TrustDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="AdvisorproviderDAO" class="com.ubs.opi.domain.AdvisorproviderDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="AdvisorDAO" class="com.ubs.opi.domain.AdvisorDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="ApplicationDAO" class="com.ubs.opi.domain.ApplicationDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="BankDAO" class="com.ubs.opi.domain.BankDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="financialInformationDao" class="com.ubs.opi.domain.FinancialInformationDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- ========================= MAIL SERVICE ========================= sn1p661pos.sng.swissbank.com 
+		ssyd0106pap ssyd0057dap -->
+	<!-- bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
+		<property name="host" value="smtp.gmail.com"/> <property name="port" value="25"/> 
+		<property name="username" value="myusername@gmail.com"/> <property name="password" 
+		value="mypassword"/> <property name="javaMailProperties"> <props> - Use SMTP 
+		transport protocol - <prop key="mail.transport.protocol">smtp</prop> - Use 
+		SMTP-AUTH to authenticate to SMTP server - <prop key="mail.smtp.auth">true</prop> 
+		- Use TLS to encrypt communication with SMTP server - <prop key="mail.smtp.starttls.enable">true</prop> 
+		<prop key="mail.debug">true</prop> </props> </property> </bean -->
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="paul@laserandcosmetic.com" />
+		<property name="password" value="groben32" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.quitwait">false</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- this is a template message that we can pre-load with default state -->
+	<bean id="templateHFAMessage" class="org.springframework.mail.SimpleMailMessage">
+		<property name="from" value="hfa@ubs.com" />
+		<property name="subject" value="OPI Login Details" />
+	</bean>
+	<bean id="mailManager" class="com.ubs.opi.support.OpiMailManager">
+		<property name="mailSender" ref="mailSender" />
+		<property name="templateHFAMessage" ref="templateHFAMessage" />
+	</bean>
+</beans>
