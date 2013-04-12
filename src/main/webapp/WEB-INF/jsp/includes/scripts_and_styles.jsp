@@ -39,8 +39,6 @@
 <script type="text/javascript" src="${contextPath}/scripts/calendar-en.js"></script>
 <script type="text/javascript" src="${contextPath}/scripts/calendar-setup.js"></script>
 <script type="text/javascript" src="${contextPath}/scripts/calendar-opi.js"></script>
-<script type="text/javascript" src="${contextPath}/scripts/calendar1.js"></script>
-<script type="text/javascript" src="${contextPath}/scripts/combined-javascript.js"></script>
 <script type="text/javascript" src="${contextPath}/scripts/DollarFunctions.js"></script>
 
 

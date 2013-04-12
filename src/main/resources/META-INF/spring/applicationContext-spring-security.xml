@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 	<!-- - Filter chain proxy - This is tied into the web.xml. - - This is the 
-		filter that calls all the other acegi filters defined here. - -->
+		filter that calls all the other spring security filters defined here. - -->
 	<bean id="securityFilterChainProxy" class="org.springframework.security.web.FilterChainProxy">
 		<constructor-arg>
 			<util:list>
@@ -142,7 +142,7 @@
 		</property>
 	</bean>
 
-	<bean id="rememberMeServices" class="com.ubs.opi.acegi.OpiRememberMeServices">
+	<bean id="rememberMeServices" class="com.ubs.opi.spring.security.OpiRememberMeServices">
 		<property name="userDetailsService" ref="userDetailsService" />
 		<property name="key" value="changeThis" />
 	</bean>

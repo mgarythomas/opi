@@ -12,9 +12,9 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
-import com.ubs.opi.acegi.OpiRememberMeServices;
 import com.ubs.opi.domain.Individual;
 import com.ubs.opi.service.Opi;
+import com.ubs.opi.spring.security.OpiRememberMeServices;
 
 /**
  * XXX why do we need this?

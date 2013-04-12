@@ -1,4 +1,4 @@
-package com.ubs.opi.acegi;
+package com.ubs.opi.spring.security;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

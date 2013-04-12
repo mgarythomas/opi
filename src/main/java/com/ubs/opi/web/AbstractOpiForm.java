@@ -25,13 +25,13 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.util.WebUtils;
 
-import com.ubs.opi.acegi.OpiRememberMeServices;
 import com.ubs.opi.domain.Advisor;
 import com.ubs.opi.domain.Application;
 import com.ubs.opi.domain.Superusers;
 import com.ubs.opi.domain.Utils;
 import com.ubs.opi.exception.RestrictedAccessException;
 import com.ubs.opi.service.Opi;
+import com.ubs.opi.spring.security.OpiRememberMeServices;
 
 /**
  * JavaBean abstract base class for opi-aware form controllers. Provides

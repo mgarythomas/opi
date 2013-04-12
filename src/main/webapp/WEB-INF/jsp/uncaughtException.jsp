@@ -40,7 +40,7 @@
         
         <hr class="clear"/>
         
-        <form method="get" action='<c:url value="/j_acegi_logout"/>' name="formLogin">
+        <form method="get" action='<c:url value="/j_spring_security_logout"/>' name="formLogin">
           <div class="button-row">
             <input name="return" type="submit" class="button" value="Log Out" />
 
