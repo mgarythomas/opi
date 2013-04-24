@@ -58,6 +58,8 @@ public class ForgotPasswordController extends AbstractOpiForm {
      if (required)
         return showForm(request, response, errors);
 
+     logger.info("Finding Lost Password :"+key+":"+value);
+
      Individual individual = this.getOpi().findIndividual(key, value);
      if (individual != null) {
         getOpi().myMailManager().resendUserNameandPassword(individual);

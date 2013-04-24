@@ -45,10 +45,9 @@
           <p>Select either your username or email address and enter it in the textbox below to retrieve your password.</p>
         </div>
         
-        <form:form method="post" id="forgotpasswordForm">
+        <form:form method="post" id="forgotpasswordForm" commandName="keyvaluepair">
           <div class="form-group">
             <div class="form-row last-row">
-              <spring:nestedPath path="keyvaluepair">
                 <spring:bind path="key">
                   <input type="radio" name="key" value="0" class="auto" checked="checked" onclick="document.getElementById('theValue').value = 'Enter your username here ...'" />
                   <label class="attached" style="width: 75px;">Username</label>
@@ -58,7 +57,6 @@
                 <spring:bind path="value">
                   <input type="text" class="short" name="value" value="Enter your username here ..." style="width: 200px;" id="theValue"/>
                 </spring:bind>
-              </spring:nestedPath>
               <br class="clear"/>
             </div>
             <br class="clear"/>
