@@ -371,9 +371,10 @@
 
             <fo:block font-size="10pt" font-weight="bold" space-after="10pt">2A - Investment Amount</fo:block>
 
-            <fo:block space-after="10pt">
+            <fo:block space-after="10pt" wrap-option="wrap">
               Please indicate below your Application Amount for each of the RBS Sweaty Global Funds
-              (minimum application of $5,000 with increments of $1,000 thereafter,
+              (minimum application of $5,000 with 
+              increments of $1,000 thereafter,
               or minimum application of $50,000 with increments of $10,000 thereafter if you are borrowing from BIS Switzerland to purchase your Units):
             </fo:block>
 
@@ -667,7 +668,7 @@
                   <fo:table table-layout="fixed" space-before="12pt">
                   <fo:table-column column-width="9%"/>
                   <fo:table-column column-width="91%"/>
-                    <fo:table-body display-align="top" font-size="10pt">
+                    <fo:table-body display-align="auto" font-size="10pt">
                       <fo:table-row>
                         <fo:table-cell><xsl:call-template name="yesNoBox"><xsl:with-param name="testTrue" select="$trustReviewDeeds"/></xsl:call-template></fo:table-cell>
                         <fo:table-cell border-style="none">
@@ -693,7 +694,7 @@
             <fo:table table-layout="fixed" space-after="10pt">
               <fo:table-column column-width="9%"/>
               <fo:table-column column-width="91%"/>
-              <fo:table-body display-align="top">
+              <fo:table-body display-align="auto">
                 <fo:table-row>
                   <fo:table-cell><xsl:call-template name="yesNoBox"><xsl:with-param name="testTrue" select="$isBorrowingFromUBS"/></xsl:call-template></fo:table-cell>
                   <fo:table-cell border-style="none">
@@ -714,7 +715,7 @@
               <fo:table table-layout="fixed" space-after="10pt">
                 <fo:table-column column-width="9%"/>
                 <fo:table-column column-width="91%"/>
-                <fo:table-body display-align="top">
+                <fo:table-body display-align="auto">
                   <fo:table-row space-after="10pt">
                     <fo:table-cell><fo:block>&nbsp;</fo:block></fo:table-cell>
                     <fo:table-cell border-style="none">
@@ -765,7 +766,7 @@
               <fo:table table-layout="fixed" space-after="10pt">
                 <fo:table-column column-width="9%"/>
                 <fo:table-column column-width="91%"/>
-                <fo:table-body display-align="top">
+                <fo:table-body display-align="auto">
                   <fo:table-row>
                     <fo:table-cell><xsl:call-template name="yesNoBox"><xsl:with-param name="testTrue" select="$isIAL"/></xsl:call-template></fo:table-cell>
                     <fo:table-cell border-style="none"><fo:block>Apply for an Interest Assistance Loan from BIS Switzerland to fund 100% of the First Interest Amount due on my Loan.*</fo:block></fo:table-cell>
@@ -938,7 +939,7 @@
                 <fo:table table-layout="fixed" space-after="10pt" border-style="solid" border-width="0.5pt">
                   <fo:table-column column-width="25%"/>
                   <fo:table-column column-width="75%"/>
-                  <fo:table-body display-align="top">
+                  <fo:table-body display-align="auto">
                     <fo:table-row>
                       <fo:table-cell number-columns-spanned="2" border-style="solid" border-width="0.5pt" padding="2pt">
                         <fo:block text-align="left" font-style="italic" space-after="10pt">Request and Authority to debit the account named below to pay</fo:block>
@@ -1092,7 +1093,7 @@
             <fo:table table-layout="fixed" space-after="10pt">
               <fo:table-column column-width="9%"/>
               <fo:table-column column-width="91%"/>
-              <fo:table-body display-align="top">
+              <fo:table-body display-align="auto">
                 <fo:table-row>
                   <fo:table-cell><xsl:call-template name="yesNoBox"><xsl:with-param name="testTrue" select="$reinvestDistribution"/></xsl:call-template></fo:table-cell>
                   <fo:table-cell border-style="none"><fo:block>Reinvest my distribution in the RBS Sweaty Global Fund.</fo:block></fo:table-cell>
@@ -1124,7 +1125,7 @@
             <fo:table table-layout="fixed" space-after="10pt">
               <fo:table-column column-width="9%"/>
               <fo:table-column column-width="91%"/>
-              <fo:table-body display-align="top">
+              <fo:table-body display-align="auto">
                 <fo:table-row>
                   <fo:table-cell><xsl:call-template name="yesNoBox"><xsl:with-param name="testTrue" select="$isPaperCopyWanted"/></xsl:call-template></fo:table-cell>
                   <fo:table-cell border-style="none"><fo:block>Provide a paper copy of the annual financial report.</fo:block></fo:table-cell>
@@ -1137,7 +1138,7 @@
             <fo:table table-layout="fixed" space-after="10pt">
               <fo:table-column column-width="9%"/>
               <fo:table-column column-width="91%"/>
-              <fo:table-body display-align="top">
+              <fo:table-body display-align="auto">
                 <fo:table-row>
                   <fo:table-cell><xsl:call-template name="yesNoBox"><xsl:with-param name="testTrue" select="$isProviderCustomer"/></xsl:call-template></fo:table-cell>
                   <fo:table-cell border-style="none">
@@ -1151,7 +1152,7 @@
             <fo:table table-layout="fixed" space-after="10pt">
               <fo:table-column column-width="9%"/>
               <fo:table-column column-width="91%"/>
-              <fo:table-body display-align="top">
+              <fo:table-body display-align="auto">
                 <fo:table-row>
                   <fo:table-cell><xsl:call-template name="yesNoBox"><xsl:with-param name="testTrue" select="$isUBSCustomer"/></xsl:call-template></fo:table-cell>
                   <fo:table-cell border-style="none">
@@ -1815,7 +1816,7 @@
                 <fo:table table-layout="fixed" space-after="10pt" border-style="solid" border-width="0.5pt">
                   <fo:table-column column-width="25%"/>
                   <fo:table-column column-width="75%"/>
-                  <fo:table-body display-align="top">
+                  <fo:table-body display-align="auto">
                     <fo:table-row>
                       <fo:table-cell number-columns-spanned="2" border-style="solid" border-width="0.5pt" padding="2pt">
                         <fo:block text-align="left" font-style="italic" space-after="10pt">Request and Authority to debit the account named below to pay</fo:block>

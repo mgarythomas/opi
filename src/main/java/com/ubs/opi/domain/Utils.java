@@ -34,7 +34,7 @@ public class Utils {
 		Collection<? extends GrantedAuthority> authorities = SecurityContextHolder
 				.getContext().getAuthentication().getAuthorities();
 		for (GrantedAuthority authority : authorities) {
-			if (authority.equals(auth))
+			if (authority.getAuthority().equals(auth))
 				return true;
 		}
 		return false;
