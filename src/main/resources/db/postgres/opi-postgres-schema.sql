@@ -9,7 +9,7 @@ drop table dealergroup;                      -- level 2
 drop table role;                             -- level 2         -- level changed, was 1
 drop table authorities;                      -- level 2         -- 
 drop table company cascade;                  -- level 1
-drop table logon;                            -- level 1         -- level changed, was 2
+--drop table logon;                            -- level 1         -- level changed, was 2
 drop table users;                            -- level 1         -- 
 drop table application cascade;              -- level 1         -- added
 drop table investorindividual;               -- level 1         -- added
@@ -27,12 +27,12 @@ create table users(                          -- level 1 - new 1112
 );
 
 -- acegi object
-create table logon(                          -- level 1, was 2
-  id serial primary key,       -- was numeric
-  username varchar(10),        -- might be unique
-  pwd varchar(10),
-  email varchar(40) default '' not null
-);
+--create table logon(                          -- level 1, was 2
+--  id serial primary key,       -- was numeric
+--  username varchar(10),        -- might be unique
+--  pwd varchar(10),
+--  email varchar(40) default '' not null
+--);
 
 create table company(                        -- level 1
   id serial primary key,
@@ -53,11 +53,11 @@ create table company(                        -- level 1
   incorporationdate date        -- new
 );
 
-create table role(                           -- level 2, was 1
-  id serial primary key,
-  logonid integer references logon on delete set null,
-  rolename varchar(12) default '' not null
-);
+--create table role(                           -- level 2, was 1
+--  id serial primary key,
+--  logonid integer references logon on delete set null,
+--  rolename varchar(12) default '' not null
+--);
 
 create table authorities(                           -- level 2 - new 1112
   username varchar(10) references users,
@@ -81,7 +81,7 @@ create table trust(                          -- level 2  -- renamed
   reviewdeeds varchar(5) default 'FALSE' not null, -- new 1112
   wealthbyemployment varchar(5) default 'FALSE' not null, -- new 1112
   wealthbyinvestments varchar(5) default 'FALSE' not null, -- new 1112
-  wealthbyother varchar(5), default 'FALSE' not null -- new 1112
+  wealthbyother varchar(5) default 'FALSE' not null, -- new 1112
   wealthbyotherinfo varchar(80), -- new 1112
   beneficiaries varchar(80)
 );

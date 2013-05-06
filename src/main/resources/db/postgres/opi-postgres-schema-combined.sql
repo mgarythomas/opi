@@ -103,6 +103,7 @@ create table PRODUCT (
    PROVIDERID integer references company on delete cascade,
    NAME varchar(40),
    TYPE varchar(24),
+   CODE varchar(20),
    CLOSINGDATE DATE,
    PUTPRICE numeric(6),
    CALLPRICE numeric(6),
