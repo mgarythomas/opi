@@ -19,7 +19,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 @Configuration
-@Profile("production")
+@Profile("jndi")
 @PropertySource(name = "spo", value = "classpath:/jdbc.properties")
 public class SpoJNDIConfiguration {
 
