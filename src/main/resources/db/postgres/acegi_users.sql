@@ -1,7 +1,7 @@
 delete from users;
 delete from authorities;
-delete from acl_object_identity;
-delete from acl_permission;
+--delete from acl_object_identity;
+--delete from acl_permission;
 
 commit;
 
@@ -39,20 +39,20 @@ INSERT INTO authorities VALUES ('dealer', 'ROLE_ADVISOR');
 INSERT INTO authorities VALUES ('dealer', 'ROLE_ANONYMOUS');
 INSERT INTO authorities VALUES ('hfaadmin', 'ROLE_HFA');
 
-INSERT INTO acl_object_identity (object_identity, parent_object, acl_class) VALUES ('org.acegisecurity.acl.DomainObject:1', null, 'org.acegisecurity.acl.basic.SimpleAclEntry');
-INSERT INTO acl_object_identity (object_identity, parent_object, acl_class) VALUES ('org.acegisecurity.acl.DomainObject:2', 1, 'org.acegisecurity.acl.basic.SimpleAclEntry');
-INSERT INTO acl_object_identity (object_identity, parent_object, acl_class) VALUES ('org.acegisecurity.acl.DomainObject:3', 1, 'org.acegisecurity.acl.basic.SimpleAclEntry');
-INSERT INTO acl_object_identity (object_identity, parent_object, acl_class) VALUES ('org.acegisecurity.acl.DomainObject:4', 1, 'org.acegisecurity.acl.basic.SimpleAclEntry');
-INSERT INTO acl_object_identity (object_identity, parent_object, acl_class) VALUES ('org.acegisecurity.acl.DomainObject:5', 3, 'org.acegisecurity.acl.basic.SimpleAclEntry');
-INSERT INTO acl_object_identity (object_identity, parent_object, acl_class) VALUES ('org.acegisecurity.acl.DomainObject:6', 3, 'org.acegisecurity.acl.basic.SimpleAclEntry');
+--INSERT INTO acl_object_identity (object_identity, parent_object, acl_class) VALUES ('org.acegisecurity.acl.DomainObject:1', null, 'org.acegisecurity.acl.basic.SimpleAclEntry');
+--INSERT INTO acl_object_identity (object_identity, parent_object, acl_class) VALUES ('org.acegisecurity.acl.DomainObject:2', 1, 'org.acegisecurity.acl.basic.SimpleAclEntry');
+--INSERT INTO acl_object_identity (object_identity, parent_object, acl_class) VALUES ('org.acegisecurity.acl.DomainObject:3', 1, 'org.acegisecurity.acl.basic.SimpleAclEntry');
+--INSERT INTO acl_object_identity (object_identity, parent_object, acl_class) VALUES ('org.acegisecurity.acl.DomainObject:4', 1, 'org.acegisecurity.acl.basic.SimpleAclEntry');
+--INSERT INTO acl_object_identity (object_identity, parent_object, acl_class) VALUES ('org.acegisecurity.acl.DomainObject:5', 3, 'org.acegisecurity.acl.basic.SimpleAclEntry');
+--INSERT INTO acl_object_identity (object_identity, parent_object, acl_class) VALUES ('org.acegisecurity.acl.DomainObject:6', 3, 'org.acegisecurity.acl.basic.SimpleAclEntry');
 
-commit;
+--commit;
 
-INSERT INTO acl_permission (acl_object_identity, recipient, mask) VALUES (1, 'ROLE_ADMINISTRATOR', 1);
-INSERT INTO acl_permission (acl_object_identity, recipient, mask) VALUES (2, 'ROLE_ADMINISTRATOR', 0);
-INSERT INTO acl_permission (acl_object_identity, recipient, mask) VALUES (2, 'marissa', 2);
-INSERT INTO acl_permission (acl_object_identity, recipient, mask) VALUES (3, 'dealer', 14);
-INSERT INTO acl_permission (acl_object_identity, recipient, mask) VALUES (4, 'dealer', 1);
+--INSERT INTO acl_permission (acl_object_identity, recipient, mask) VALUES (1, 'ROLE_ADMINISTRATOR', 1);
+--INSERT INTO acl_permission (acl_object_identity, recipient, mask) VALUES (2, 'ROLE_ADMINISTRATOR', 0);
+--INSERT INTO acl_permission (acl_object_identity, recipient, mask) VALUES (2, 'marissa', 2);
+--INSERT INTO acl_permission (acl_object_identity, recipient, mask) VALUES (3, 'dealer', 14);
+--INSERT INTO acl_permission (acl_object_identity, recipient, mask) VALUES (4, 'dealer', 1);
 
 commit;
 
