@@ -20,7 +20,7 @@
             <column name="INDIVIDUALID" precision="9" scale="0" />
         </many-to-one>
         <property name="advisornumber" type="string">
-            <column name="ADVISORNUMBER" length="12" />
+            <column name="ADVISORNUMERIC" length="12" />
         </property>
         <!--  property name="recordCreated" type="date"
             <column name="RecordCreated" length="7" /

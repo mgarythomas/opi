@@ -1,7 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt1" uri="http://java.sun.com/jsp/jstl/fmt"  %>
-<%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="tag" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -1017,12 +1017,11 @@
           </dd>
         </dl>
 
-        <form:form>
+        <form:form commandName="advisor">
           <div class="form-group">
             <div class="form-row last-row">
-              <spring:nestedPath path="advisor">
-                <tag:formCheckbox name="I accept the above Terms of Use" path="acceptedtermsofuse" mand="true" />
-              </spring:nestedPath>
+                <form:checkbox id="accept_terms" path="acceptedtermsofuse"/>
+            	<label for="accept_terms">I accept the above Terms of Use</label>
             </div>
             <br class="clear"/>
           </div>
