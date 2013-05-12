@@ -22,7 +22,7 @@
     <property name="cookieName" value="opi"/>
   </bean>
 
-  <bean id="providerParamInterceptor" class="com.ubs.opi.web.interceptor.OpiThemeChangeInterceptor">
+  <bean id="providerParamInterceptor" class="org.opi.web.interceptor.OpiThemeChangeInterceptor">
     <property name="paramName" value="provider"/>
   </bean>
   
@@ -40,7 +40,7 @@
   <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
     <property name="interceptors">
       <list>
-        <bean class="com.ubs.opi.web.interceptor.DateInsertionInterceptor">
+        <bean class="org.opi.web.interceptor.DateInsertionInterceptor">
            <property name="opi" ref="opi" />
         </bean>
         <ref local="providerParamInterceptor"/>
@@ -119,9 +119,9 @@
   
   <!-- ========================= CONTROLLER DEFINITIONS ========================= -->
   
-  <bean name="/applicationwizard.htm" class="com.ubs.opi.web.controller.application.ApplicationWizardFormController">
+  <bean name="/applicationwizard.htm" class="org.opi.web.controller.application.ApplicationWizardFormController">
     <property name="commandName" value="application"/>
-    <property name="commandClass" value="com.ubs.opi.domain.Application"/>
+    <property name="commandClass" value="org.opi.domain.Application"/>
     <property name="allowDirtyBack" value="true"/>
     <property name="allowDirtyForward" value="true"/>
     <property name="pages">
@@ -142,7 +142,7 @@
     - This bean is a MultiActionController that manages general View rendering.
     - It uses the "ControllerResolver" bean below for method name resolution.
   -->
-  <bean id="opiController" class="com.ubs.opi.web.OpiController">
+  <bean id="opiController" class="org.opi.web.OpiController">
     <property name="methodNameResolver">
       <bean class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
         <property name="mappings">
@@ -161,21 +161,21 @@
     <property name="applicationService" ref="applicationService" />
   </bean>
   
-  <bean name="/login.htm" class="com.ubs.opi.web.controller.login.LoginController">
+  <bean name="/login.htm" class="org.opi.web.controller.login.LoginController">
     <property name="formView" value="login"/>
   </bean>
   
-  <bean name="/mainpage_redirect.htm" class="com.ubs.opi.web.controller.login.MainPageRedirectionController">
+  <bean name="/mainpage_redirect.htm" class="org.opi.web.controller.login.MainPageRedirectionController">
     <property name="opiService" ref="opi"/>
   </bean>
   
-  <bean name="/forgotpassword.htm" class="com.ubs.opi.web.controller.login.ForgotPasswordController">
+  <bean name="/forgotpassword.htm" class="org.opi.web.controller.login.ForgotPasswordController">
     <property name="formView" value="forgotpassword"/>
     <property name="successView" value="redirect:/emailsent.htm" />
     <property name="opi" ref="opi" />
   </bean>
   
-  <bean name="/emailsent.htm" class="com.ubs.opi.web.controller.login.EmailSendController">
+  <bean name="/emailsent.htm" class="org.opi.web.controller.login.EmailSendController">
     <property name="formView" value="emailsent"/>
   </bean>
   
@@ -185,7 +185,7 @@
   -->
 
 
-  <bean name="/findDealergroups.htm" class="com.ubs.opi.web.FindDealergroupsForm">
+  <bean name="/findDealergroups.htm" class="org.opi.web.FindDealergroupsForm">
     <property name="formView" value="findDealergroups" />
     <property name="selectView" value="dealergroups" />
     <property name="successView" value="redirect:/advisorcomplete.htm" />
@@ -193,14 +193,14 @@
     <property name="opi" ref="opi" />
   </bean>
   
-  <bean name="/addDealergroup.htm" class="com.ubs.opi.web.AddDealergroupForm">
+  <bean name="/addDealergroup.htm" class="org.opi.web.AddDealergroupForm">
     <property name="formView" value="dealergroupForm" />
     <property name="successView" value="redirect:/dealergroup.htm" />
     <property name="validator" ref="dealergroupValidator" />
     <property name="opi" ref="opi" />
   </bean>
   
-  <bean name="/guruusers.htm" class="com.ubs.opi.web.GuruusersForm">
+  <bean name="/guruusers.htm" class="org.opi.web.GuruusersForm">
     <property name="formView" value="guruusers" />
     <property name="createadvisorView" value="redirect:/findDealergroups.htm" />
     <property name="advisorfirmsView" value="redirect:/advisorfirms.htm" />
@@ -209,7 +209,7 @@
     <property name="opi" ref="opi" />
   </bean>
 
-  <bean name="/superusers.htm" class="com.ubs.opi.web.SuperusersForm">
+  <bean name="/superusers.htm" class="org.opi.web.SuperusersForm">
     <property name="formView" value="superusers" />
     <property name="successView" value="redirect:/addAdvisorapplication.htm" />
     <property name="createadvisorView" value="redirect:/findDealergroups.htm" />
@@ -219,7 +219,7 @@
     <property name="opi" ref="opi" />
   </bean>
 
-  <bean name="/bdmusers.htm" class="com.ubs.opi.web.BdmUsersForm">
+  <bean name="/bdmusers.htm" class="org.opi.web.BdmUsersForm">
     <property name="formView" value="bdmusers" />
     <property name="successView" value="redirect:/bdmusers.htm" />
     <property name="bdmView" value="redirect:/bdm.htm" />
@@ -228,14 +228,14 @@
     <property name="bdmAdminService" ref="bdmAdminService" />
   </bean>
   
-  <bean name="/bdm.htm" class="com.ubs.opi.web.BdmForm">
+  <bean name="/bdm.htm" class="org.opi.web.BdmForm">
     <property name="formView" value="bdmForm" />
     <property name="successView" value="redirect:/bdmusers.htm" />
     <property name="validator" ref="bdmValidator" />
     <property name="opi" ref="opi" />
   </bean>
 
-  <bean name="/advisorapplications.htm" class="com.ubs.opi.web.AdvisorapplicationsForm">
+  <bean name="/advisorapplications.htm" class="org.opi.web.AdvisorapplicationsForm">
     <property name="formView" value="advisorapplications" />
     <property name="successView" value="redirect:/addAdvisorapplication.htm" />
     <property name="validator" ref="advisorapplicationsValidator" />
@@ -243,26 +243,26 @@
     <property name="opi" ref="opi" />
   </bean>
   
-  <bean name="/deleteapplication.htm" class="com.ubs.opi.web.DeleteApplicationController">
+  <bean name="/deleteapplication.htm" class="org.opi.web.DeleteApplicationController">
     <property name="successView" value="redirect:/advisorapplications.htm" />
     <property name="advisorService" ref="advisorService" />
   </bean>
   
-  <bean name="/advisorapplication.htm" class="com.ubs.opi.web.AdvisorapplicationForm">
+  <bean name="/advisorapplication.htm" class="org.opi.web.AdvisorapplicationForm">
     <property name="formView" value="advisorapplicationForm" />
     <property name="successView" value="redirect:/investmentdetails.htm" />
     <property name="validator" ref="applicationSummaryValidator" />
     <property name="opi" ref="opi" />
   </bean>
   
-  <bean name="/changepassword.htm" class="com.ubs.opi.web.ChangepasswordForm">
+  <bean name="/changepassword.htm" class="org.opi.web.ChangepasswordForm">
     <property name="formView" value="changepassword" />
     <property name="successView" value="redirect:/advisorapplications.htm" />
     <property name="validator" ref="changepasswordValidator" />
     <property name="opi" ref="opi" />
   </bean>
   
-  <bean name="/addAdvisorapplication.htm" class="com.ubs.opi.web.AddAdvisorapplicationForm">
+  <bean name="/addAdvisorapplication.htm" class="org.opi.web.AddAdvisorapplicationForm">
     <property name="formView" value="addadvisorapplicationForm" />
     <property name="successView" value="redirect:/investmentdetails.htm" />
     <property name="beneficiaryView" value="redirect:/beneficiary.htm" />
@@ -271,20 +271,20 @@
     <property name="advisorService" ref="advisorService" />
   </bean>
   
-  <bean id="abstractOpiController" class="com.ubs.opi.web.controller.AbstractOpiController" abstract="true" >
+  <bean id="abstractOpiController" class="org.opi.web.controller.AbstractOpiController" abstract="true" >
     <property name="applicationService" ref="applicationService" />
     <property name="commandName" value="application" />
     <property name="sessionForm" value="true" />
   </bean>
 
-  <bean name="/investmentdetails.htm" class="com.ubs.opi.web.controller.InvestmentDetailsController" parent="abstractOpiController">
+  <bean name="/investmentdetails.htm" class="org.opi.web.controller.InvestmentDetailsController" parent="abstractOpiController">
     <property name="formView" value="investmentdetails" />
     <property name="ownfundsView" value="redirect:/directdebitcredit.htm" />
     <property name="successView" value="redirect:/financials.htm" />
     <property name="validator" ref="applicationFormValidator" />
   </bean>
 
-  <bean name="/financials.htm" class="com.ubs.opi.web.FinancialsForm">
+  <bean name="/financials.htm" class="org.opi.web.FinancialsForm">
     <property name="formView" value="financials" />
     <property name="successView" value="redirect:/directdebitcredit.htm" />
     <property name="additionalGuarantorsView" value="redirect:/guarantors.htm" />
@@ -293,11 +293,11 @@
     <property name="advisorService" ref="advisorService"/>
   </bean>
   
-  <bean name="/guarantors.htm" class="com.ubs.opi.web.AdditionalGuarantorsForm">
+  <bean name="/guarantors.htm" class="org.opi.web.AdditionalGuarantorsForm">
     <property name="formView" value="guarantors" />
     <property name="successView" value="redirect:/directdebitcredit.htm" />
     <property name="validator">
-      <bean class="com.ubs.opi.validation.AdditionalGuarantorsFormValidator">
+      <bean class="org.opi.validation.AdditionalGuarantorsFormValidator">
         <property name="advisorService" ref="advisorService" />
       </bean>
     </property>
@@ -305,28 +305,28 @@
     <property name="advisorService" ref="advisorService" />
   </bean>
   
-  <bean name="/beneficiary.htm" class="com.ubs.opi.web.BeneficiaryForm">
+  <bean name="/beneficiary.htm" class="org.opi.web.BeneficiaryForm">
     <property name="formView" value="beneficiaryForm" />
     <property name="successView" value="redirect:/investmentdetails.htm" />
     <property name="validator" ref="beneficiaryFormValidator" />
     <property name="opi" ref="opi" />
   </bean>
   
-  <bean name="/directdebitcredit.htm" class="com.ubs.opi.web.controller.DirectDebitAndCreditDetailsController" parent="abstractOpiController">
+  <bean name="/directdebitcredit.htm" class="org.opi.web.controller.DirectDebitAndCreditDetailsController" parent="abstractOpiController">
     <property name="formView" value="directdebitcredit" />
     <property name="successView" value="redirect:/investorinfo.htm" />
     <property name="validator" ref="directDebitCreditFormValidator" />
     <property name="advisorService" ref="advisorService" />
   </bean>
   
-  <bean name="/investorinfo.htm" class="com.ubs.opi.web.InvestorinfoForm">
+  <bean name="/investorinfo.htm" class="org.opi.web.InvestorinfoForm">
     <property name="formView" value="investorinfo" />
     <property name="successView" value="redirect:/confirmation.htm" />
     <property name="validator" ref="investorinfoFormValidator" />
     <property name="opi" ref="opi" />
   </bean>
   
-  <bean name="/confirmation.htm" class="com.ubs.opi.web.ConfirmationForm">
+  <bean name="/confirmation.htm" class="org.opi.web.ConfirmationForm">
     <property name="formView" value="confirmation" />
     <property name="successView" value="redirect:/advisorapplications.htm" />
     <property name="validator" ref="confirmationValidator" />
@@ -334,7 +334,7 @@
     <property name="opiService" ref="opiService" />
   </bean>
 
-  <bean name="/dealergroupConf.htm" class="com.ubs.opi.web.DealergroupConfForm">
+  <bean name="/dealergroupConf.htm" class="org.opi.web.DealergroupConfForm">
     <property name="formView" value="dealergroup" />
     <property name="successView" value="redirect:/emailConf.htm" />
     <property name="existingView" value="redirect:/dealergroupConf.htm" />
@@ -343,35 +343,35 @@
     <property name="opi" ref="opi" />
   </bean>
   
-  <bean name="/emailConf.htm" class="com.ubs.opi.web.EmailConfForm">
+  <bean name="/emailConf.htm" class="org.opi.web.EmailConfForm">
     <property name="formView" value="emailconfirmation" />
     <property name="successView" value="redirect:/login.htm" />
     <property name="validator" ref="emailConfValidator" />
     <property name="opi" ref="opi" />
   </bean>
   
-  <bean name="/editDealergroup.htm" class="com.ubs.opi.web.EditDealergroupForm">
+  <bean name="/editDealergroup.htm" class="org.opi.web.EditDealergroupForm">
     <property name="formView" value="dealergroupForm" />
     <property name="successView" value="redirect:/dealergroup.htm" />
     <property name="validator" ref="dealergroupValidator" />
     <property name="opi" ref="opi" />
   </bean>
 
-  <bean name="/editIndividual.htm" class="com.ubs.opi.web.EditIndividualForm">
+  <bean name="/editIndividual.htm" class="org.opi.web.EditIndividualForm">
     <property name="formView" value="individualForm" />
     <property name="successView" value="redirect:/advisorapplication.htm" />
     <property name="validator" ref="individualValidator" />
     <property name="opi" ref="opi" />
   </bean>
 
-  <bean name="/addIndividual.htm" class="com.ubs.opi.web.AddIndividualForm">
+  <bean name="/addIndividual.htm" class="org.opi.web.AddIndividualForm">
     <property name="formView" value="individualForm" />
     <property name="successView" value="redirect:/advisorapplication.htm" />
     <property name="validator" ref="individualValidator" />
     <property name="opi" ref="opi" />
   </bean>
 
-  <bean name="/advisors.htm" class="com.ubs.opi.web.AdvisorsForm">
+  <bean name="/advisors.htm" class="org.opi.web.AdvisorsForm">
     <property name="formView" value="advisors" />
     <property name="successView" value="redirect:/applications.htm" />
     <property name="startView" value="redirect:/guruusers.htm" />
@@ -380,7 +380,7 @@
     <property name="opi" ref="opi" />
   </bean>
 
-  <bean name="/applications.htm" class="com.ubs.opi.web.ApplicationsForm">
+  <bean name="/applications.htm" class="org.opi.web.ApplicationsForm">
     <property name="formView" value="applications" />
     <property name="successView" value="redirect:/applications.htm" />
     <property name="previousView" value="redirect:/advisors.htm" />
@@ -388,7 +388,7 @@
     <property name="opi" ref="opi" />
   </bean>
 
-  <bean name="/advisorfirms.htm" class="com.ubs.opi.web.AdvisorfirmsForm">
+  <bean name="/advisorfirms.htm" class="org.opi.web.AdvisorfirmsForm">
     <property name="formView" value="advisorfirms" />
     <property name="successView" value="redirect:/advisors.htm" />
     <property name="existingView" value="redirect:/advisorfirms.htm" />
@@ -397,7 +397,7 @@
     <property name="opi" ref="opi" />
   </bean>
 
-  <bean name="/advisorcomplete.htm" class="com.ubs.opi.web.AddAdvisorCompleteForm">
+  <bean name="/advisorcomplete.htm" class="org.opi.web.AddAdvisorCompleteForm">
     <property name="formView" value="advisorcompleteForm" />
     <property name="superusersView" value="redirect:/addAdvisorapplication.htm" />
     <property name="successView" value="redirect:/dealergroupConf.htm" />
@@ -405,21 +405,21 @@
     <property name="opi" ref="opi" />
   </bean>
 
-  <bean name="/addAdvisorindividual.htm" class="com.ubs.opi.web.AddAdvisorindividualForm">
+  <bean name="/addAdvisorindividual.htm" class="org.opi.web.AddAdvisorindividualForm">
     <property name="formView" value="advisorindividualForm" />
     <property name="successView" value="redirect:/advisorindividuals.htm" />
     <property name="validator" ref="individualValidator" />
     <property name="opi" ref="opi" />
   </bean>
 
-  <bean name="/editAdvisorfirm.htm" class="com.ubs.opi.web.EditAdvisorfirmForm">
+  <bean name="/editAdvisorfirm.htm" class="org.opi.web.EditAdvisorfirmForm">
     <property name="formView" value="advisorfirmForm" />
     <property name="successView" value="redirect:/dealergroup.htm" />
     <property name="validator" ref="advisorfirmValidator" />
     <property name="opi" ref="opi" />
   </bean>
 
-  <bean name="/editAdvisor.htm" class="com.ubs.opi.web.EditAdvisorForm">
+  <bean name="/editAdvisor.htm" class="org.opi.web.EditAdvisorForm">
     <property name="formView" value="advisorForm" />
     <property name="successView" value="redirect:/advisorapplications.htm" />
     <property name="validator" ref="advisorValidator" />
@@ -427,38 +427,38 @@
     <property name="advisorService" ref="advisorService"/>
   </bean>
 
-  <bean name="/addAdvisor.htm" class="com.ubs.opi.web.AddAdvisorForm">
+  <bean name="/addAdvisor.htm" class="org.opi.web.AddAdvisorForm">
     <property name="formView" value="advisorForm" />
     <property name="successView" value="redirect:/dealergroup.htm" />
     <property name="validator" ref="individualValidator" />
     <property name="opi" ref="opi" />
   </bean>
 
-  <bean id="changepasswordValidator" class="com.ubs.opi.validation.ChangepasswordValidator" />
-  <bean id="emailConfValidator" class="com.ubs.opi.validation.EmailConfValidator" />
-  <bean id="dealergroupConfValidator" class="com.ubs.opi.validation.DealergroupConfValidator" />
-  <bean id="dealergroupValidator" class="com.ubs.opi.validation.DealergroupValidator" />
-  <bean id="advisorValidator" class="com.ubs.opi.validation.AdvisorValidator" />
-  <bean id="advisorsValidator" class="com.ubs.opi.validation.AdvisorsValidator" />
-  <bean id="advisorfirmValidator" class="com.ubs.opi.validation.AdvisorfirmValidator" />
-  <bean id="advisorfirmsValidator" class="com.ubs.opi.validation.AdvisorfirmsValidator" />
-  <bean id="directDebitCreditFormValidator" class="com.ubs.opi.validation.DirectDebitCreditFormValidator" />
-  <bean id="financialsFormValidator" class="com.ubs.opi.validation.FinancialsFormValidator" />
-  <bean id="beneficiaryFormValidator" class="com.ubs.opi.validation.BeneficiaryFormValidator" />
-  <bean id="advisorCompleteValidator" class="com.ubs.opi.validation.AdvisorCompleteValidator" />
-  <bean id="advisorapplicationsValidator" class="com.ubs.opi.validation.AdvisorapplicationsValidator" />
-  <bean id="advisorapplicationFormValidator" class="com.ubs.opi.validation.AdvisorapplicationFormValidator" />
-  <bean id="applicationFormValidator" class="com.ubs.opi.validation.ApplicationFormValidator" />
-  <bean id="applicationsValidator" class="com.ubs.opi.validation.ApplicationsValidator" />
-  <bean id="applicationSummaryValidator" class="com.ubs.opi.validation.ApplicationSummaryValidator" />
-  <bean id="investorinfoFormValidator" class="com.ubs.opi.validation.InvestorinfoFormValidator" />
-  <bean id="confirmationValidator" class="com.ubs.opi.validation.ConfirmationValidator" />
-  <bean id="findDealerGroupFormValidator" class="com.ubs.opi.validation.FindDealerGroupFormValidator" />
-  <bean id="guruusersValidator" class="com.ubs.opi.validation.GuruusersValidator" />
-  <bean id="superusersValidator" class="com.ubs.opi.validation.SuperusersValidator" />
-  <bean id="bdmusersValidator" class="com.ubs.opi.validation.BdmUsersValidator" />
-  <bean id="bdmValidator" class="com.ubs.opi.validation.BdmValidator" />
-  <bean id="logonValidator" class="com.ubs.opi.validation.LogonValidator" />
-  <bean id="individualValidator" class="com.ubs.opi.validation.IndividualValidator" />
+  <bean id="changepasswordValidator" class="org.opi.validation.ChangepasswordValidator" />
+  <bean id="emailConfValidator" class="org.opi.validation.EmailConfValidator" />
+  <bean id="dealergroupConfValidator" class="org.opi.validation.DealergroupConfValidator" />
+  <bean id="dealergroupValidator" class="org.opi.validation.DealergroupValidator" />
+  <bean id="advisorValidator" class="org.opi.validation.AdvisorValidator" />
+  <bean id="advisorsValidator" class="org.opi.validation.AdvisorsValidator" />
+  <bean id="advisorfirmValidator" class="org.opi.validation.AdvisorfirmValidator" />
+  <bean id="advisorfirmsValidator" class="org.opi.validation.AdvisorfirmsValidator" />
+  <bean id="directDebitCreditFormValidator" class="org.opi.validation.DirectDebitCreditFormValidator" />
+  <bean id="financialsFormValidator" class="org.opi.validation.FinancialsFormValidator" />
+  <bean id="beneficiaryFormValidator" class="org.opi.validation.BeneficiaryFormValidator" />
+  <bean id="advisorCompleteValidator" class="org.opi.validation.AdvisorCompleteValidator" />
+  <bean id="advisorapplicationsValidator" class="org.opi.validation.AdvisorapplicationsValidator" />
+  <bean id="advisorapplicationFormValidator" class="org.opi.validation.AdvisorapplicationFormValidator" />
+  <bean id="applicationFormValidator" class="org.opi.validation.ApplicationFormValidator" />
+  <bean id="applicationsValidator" class="org.opi.validation.ApplicationsValidator" />
+  <bean id="applicationSummaryValidator" class="org.opi.validation.ApplicationSummaryValidator" />
+  <bean id="investorinfoFormValidator" class="org.opi.validation.InvestorinfoFormValidator" />
+  <bean id="confirmationValidator" class="org.opi.validation.ConfirmationValidator" />
+  <bean id="findDealerGroupFormValidator" class="org.opi.validation.FindDealerGroupFormValidator" />
+  <bean id="guruusersValidator" class="org.opi.validation.GuruusersValidator" />
+  <bean id="superusersValidator" class="org.opi.validation.SuperusersValidator" />
+  <bean id="bdmusersValidator" class="org.opi.validation.BdmUsersValidator" />
+  <bean id="bdmValidator" class="org.opi.validation.BdmValidator" />
+  <bean id="logonValidator" class="org.opi.validation.LogonValidator" />
+  <bean id="individualValidator" class="org.opi.validation.IndividualValidator" />
 
 </beans>

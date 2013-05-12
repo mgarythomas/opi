@@ -3,14 +3,14 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="com.ubs.opi.domain.ApplicationDirectCreditDetails" table="APPLICATIONDIRECTCREDITDETAILS">
+  <class name="org.opi.domain.ApplicationDirectCreditDetails" table="APPLICATIONDIRECTCREDITDETAILS">
     <id name="id" column="applicationid"> 
       <generator class="foreign">
         <param name="property">application</param>
       </generator>
     </id>
     
-    <one-to-one name="application" class="com.ubs.opi.domain.Application" constrained="true"/>
+    <one-to-one name="application" class="org.opi.domain.Application" constrained="true"/>
     
     <property name="bsb" column="BSB"/>
     <property name="accountName" column="ACCOUNTNAME"/>

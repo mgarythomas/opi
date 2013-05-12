@@ -135,7 +135,7 @@
 	<filter>
 		<filter-name>DisableUrlSessionFilter</filter-name>
 		<filter-class>
-			com.ubs.opi.web.filter.DisableUrlSessionFilter
+			org.opi.web.filter.DisableUrlSessionFilter
 		</filter-class>
 	</filter>
 

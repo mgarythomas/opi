@@ -1,4 +1,4 @@
-<%@ page import="com.ubs.opi.domain.ServletHelper"%>
+<%@ page import="org.opi.domain.ServletHelper"%>
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

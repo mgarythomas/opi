@@ -1,6 +1,6 @@
 <%@ page import="org.apache.commons.logging.Log"%>
 <%@ page import="org.apache.commons.logging.LogFactory"%>
-<%@ page import="com.ubs.opi.domain.Utils"%>
+<%@ page import="org.opi.domain.Utils"%>
 <!-- footer -->
 <DIV id=footer>
   <table cellPadding=5 width="100%">

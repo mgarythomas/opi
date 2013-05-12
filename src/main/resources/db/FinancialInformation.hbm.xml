@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="com.ubs.opi.domain.FinancialInformation" table="FINANCIALINFORMATION">
+  <class name="org.opi.domain.FinancialInformation" table="FINANCIALINFORMATION">
     <id name="id" column="investorindividualid">
       <generator class="foreign">
         <param name="property">investorindividual</param>

@@ -142,7 +142,7 @@
 		</property>
 	</bean>
 
-	<bean id="rememberMeServices" class="com.ubs.opi.spring.security.OpiRememberMeServices">
+	<bean id="rememberMeServices" class="org.opi.spring.security.OpiRememberMeServices">
 		<property name="userDetailsService" ref="userDetailsService" />
 		<property name="key" value="changeThis" />
 	</bean>
@@ -187,7 +187,7 @@
 	</bean>
 
 	<!-- Authentication using JDBC Dao -->
-	<bean id="userDetailsService" class="com.ubs.opi.domain.SpringSecurityDao">
+	<bean id="userDetailsService" class="org.opi.domain.SpringSecurityDao">
 		<property name="dataSource">
 			<ref bean="dataSource" />
 		</property>

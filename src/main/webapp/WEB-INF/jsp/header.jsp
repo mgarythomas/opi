@@ -1,4 +1,4 @@
-<%@ page import="com.ubs.opi.domain.Utils"%>
+<%@ page import="org.opi.domain.Utils"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
@@ -52,5 +52,5 @@
                 </tr>
               </tbody>
             </table>
-            <!--  % com.ubs.opi.domain.HibernateSessionFactory.getSession(); % -->
+            <!--  % org.opi.domain.HibernateSessionFactory.getSession(); % -->
           </div>

@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/jsp/includes.jsp" %>
 <%@ include file="/WEB-INF/jsp/header.jsp" %>
-<%@ page import="com.ubs.opi.domain.Constants" %>
+<%@ page import="org.opi.domain.Constants" %>
 
       <!-- content -->
 	  <div id="content">

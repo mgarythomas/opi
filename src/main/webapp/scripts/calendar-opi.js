@@ -1,4 +1,4 @@
-// Author: Paul McLachlan, <paul.mclachlan@ubs.com>
+// Author: Paul McLachlan, <paul@laserandcosmetic.com>
 // full day names
 
 var oldLink = null;

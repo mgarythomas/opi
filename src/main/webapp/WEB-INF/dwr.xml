@@ -3,13 +3,13 @@
     "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN"
     "http://getahead.org/dwr/dwr20.dtd">
 	
-      <!--param name="class" value="com.ubs.opi.service.OpiDAO"/ -->
+      <!--param name="class" value="org.opi.service.OpiDAO"/ -->
 <dwr>
   <allow>
     <create creator="spring" javascript="Opi" scope="session">
       <param name="beanName" value="opi"/>
     </create>
-	<convert converter="bean" match="com.ubs.opi.domain.*"/>
-	<convert converter="bean" match="com.ubs.opi.service.*"/>
+	<convert converter="bean" match="org.opi.domain.*"/>
+	<convert converter="bean" match="org.opi.service.*"/>
   </allow>
 </dwr>

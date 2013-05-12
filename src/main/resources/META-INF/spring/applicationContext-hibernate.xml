@@ -61,7 +61,7 @@
 
 
 	<!-- Pixml service using JDBC Dao -->
-	<bean id="pixml" class="com.ubs.opi.domain.PixmlDao">
+	<bean id="pixml" class="org.opi.domain.PixmlDao">
 		<property name="dataSource">
 			<ref bean="dataSource" />
 		</property>
@@ -77,7 +77,7 @@
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager" ref="transactionManager" />
 		<property name="target">
-			<bean id="opiTarget" class="com.ubs.opi.service.OpiDAO">
+			<bean id="opiTarget" class="org.opi.service.OpiDAO">
 				<property name="dealergroupDAO" ref="DealergroupDAO" />
 				<property name="advisorfirmDAO" ref="AdvisorfirmDAO" />
 				<property name="advisorDAO" ref="AdvisorDAO" />
@@ -109,7 +109,7 @@
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager" ref="transactionManager" />
 		<property name="target">
-			<bean class="com.ubs.opi.service.BdmAdminService">
+			<bean class="org.opi.service.BdmAdminService">
 				<property name="companyDAO" ref="CompanyDAO" />
 				<property name="individualDAO" ref="IndividualDAO" />
 				<property name="advisorproviderDAO" ref="AdvisorproviderDAO" />
@@ -128,7 +128,7 @@
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager" ref="transactionManager" />
 		<property name="target">
-			<bean class="com.ubs.opi.service.ApplicationService">
+			<bean class="org.opi.service.ApplicationService">
 				<property name="applicationDAO" ref="ApplicationDAO" />
 			</bean>
 		</property>
@@ -145,7 +145,7 @@
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager" ref="transactionManager" />
 		<property name="target">
-			<bean class="com.ubs.opi.service.AdvisorService">
+			<bean class="org.opi.service.AdvisorService">
 				<property name="advisorDAO" ref="AdvisorDAO" />
 				<property name="applicationDAO" ref="ApplicationDAO" />
 				<property name="productDAO" ref="ProductDAO" />
@@ -174,7 +174,7 @@
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager" ref="transactionManager" />
 		<property name="target">
-			<bean class="com.ubs.opi.service.SuperUserService">
+			<bean class="org.opi.service.SuperUserService">
 				<property name="productDAO" ref="ProductDAO" />
 			</bean>
 		</property>
@@ -190,7 +190,7 @@
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager" ref="transactionManager" />
 		<property name="target">
-			<bean class="com.ubs.opi.service.OpiService">
+			<bean class="org.opi.service.OpiService">
 				<property name="advisorDao" ref="AdvisorDAO" />
 				<property name="companyDao" ref="CompanyDAO" />
 				<property name="productDao" ref="ProductDAO" />
@@ -224,75 +224,75 @@
 		<property name="autodetect" value="true" />
 	</bean>
 
-	<bean id="AuthoritiesDAO" class="com.ubs.opi.domain.AuthoritiesDAO">
+	<bean id="AuthoritiesDAO" class="org.opi.domain.AuthoritiesDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="ProductDAO" class="com.ubs.opi.domain.ProductDAO">
+	<bean id="ProductDAO" class="org.opi.domain.ProductDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="DealergroupDAO" class="com.ubs.opi.domain.DealergroupDAO">
+	<bean id="DealergroupDAO" class="org.opi.domain.DealergroupDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="CompanyDAO" class="com.ubs.opi.domain.CompanyDAO">
+	<bean id="CompanyDAO" class="org.opi.domain.CompanyDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="UsersDAO" class="com.ubs.opi.domain.UsersDAO">
+	<bean id="UsersDAO" class="org.opi.domain.UsersDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="InvestorindividualDAO" class="com.ubs.opi.domain.InvestorindividualDAO">
+	<bean id="InvestorindividualDAO" class="org.opi.domain.InvestorindividualDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="IndividualDAO" class="com.ubs.opi.domain.IndividualDAO">
+	<bean id="IndividualDAO" class="org.opi.domain.IndividualDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="AdvisorfirmDAO" class="com.ubs.opi.domain.AdvisorfirmDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	<bean id="TrustDAO" class="com.ubs.opi.domain.TrustDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-	</bean>
-	<bean id="AdvisorproviderDAO" class="com.ubs.opi.domain.AdvisorproviderDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-	</bean>
-	<bean id="AdvisorDAO" class="com.ubs.opi.domain.AdvisorDAO">
+	<bean id="AdvisorfirmDAO" class="org.opi.domain.AdvisorfirmDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	<bean id="ApplicationDAO" class="com.ubs.opi.domain.ApplicationDAO">
+	<bean id="TrustDAO" class="org.opi.domain.TrustDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="BankDAO" class="com.ubs.opi.domain.BankDAO">
+	<bean id="AdvisorproviderDAO" class="org.opi.domain.AdvisorproviderDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="AdvisorDAO" class="org.opi.domain.AdvisorDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="ApplicationDAO" class="org.opi.domain.ApplicationDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="BankDAO" class="org.opi.domain.BankDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
 
-	<bean id="financialInformationDao" class="com.ubs.opi.domain.FinancialInformationDao">
+	<bean id="financialInformationDao" class="org.opi.domain.FinancialInformationDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -328,7 +328,7 @@
 		<property name="from" value="hfa@ubs.com" />
 		<property name="subject" value="OPI Login Details" />
 	</bean>
-	<bean id="mailManager" class="com.ubs.opi.support.OpiMailManager">
+	<bean id="mailManager" class="org.opi.support.OpiMailManager">
 		<property name="mailSender" ref="mailSender" />
 		<property name="templateHFAMessage" ref="templateHFAMessage" />
 	</bean>
